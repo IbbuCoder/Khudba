@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import verified from './quran-verified.json'
 import { displayArabic } from './quran'
+import { getIndopakVerse, joinRuns, runsText } from './indopak'
 import { RECITATIONS } from './recitations'
 import { BLOCKS, SECTIONS, SECTION_START } from './script'
 
@@ -104,5 +105,41 @@ describe('Khutbah script', () => {
     expect(new Set(BLOCKS.map((b) => b.id)).size).toBe(BLOCKS.length)
     expect(SECTION_START).toHaveLength(SECTIONS.length)
     SECTION_START.forEach((start, i) => expect(BLOCKS[start].sectionId).toBe(SECTIONS[i].id))
+  })
+})
+
+describe('Indo-Pak script', () => {
+  // Orthographic differences between Uthmani and Indo-Pak spelling only.
+  const NORMALISE: Record<string, string> = {
+    'ٱ': '', 'ا': '', 'أ': '', 'إ': '', 'آ': '', 'ٲ': '', 'ء': '', 'ـ': '', 'ۥ': '', 'ۦ': '',
+    'ى': 'ي', 'ی': 'ي', 'ئ': 'ي', 'ٮ': 'ي', 'ؤ': 'و', 'ة': 'ه',
+  }
+  const letters = (s: string) =>
+    [...s]
+      .filter((c) => /\p{L}/u.test(c))
+      .map((c) => NORMALISE[c] ?? c)
+      .join('')
+
+  it('has exactly the same letters as the verified text for every verse', () => {
+    for (const key of Object.keys(verses)) {
+      expect(letters(getIndopakVerse(key).text), key).toBe(letters(verses[key].arabic))
+    }
+  })
+
+  it('keeps the tajweed runs identical to the Indo-Pak text', () => {
+    for (const key of Object.keys(verses)) {
+      const v = getIndopakVerse(key)
+      expect(runsText(v.runs), key).toBe(v.text)
+      expect(runsText(joinRuns(v.runs)).replace(/‍/g, ''), key).toBe(v.text)
+    }
+  })
+
+  it('starts each partial verse at the same word as the Uthmani text', () => {
+    for (const r of Object.values(RECITATIONS)) {
+      for (const s of r.segments.filter((x) => x.kind === 'quran')) {
+        expect(s.indopak, s.ref).toBeDefined()
+        expect(letters(runsText(s.indopak!)), s.ref).toBe(letters(s.arabic))
+      }
+    }
   })
 })

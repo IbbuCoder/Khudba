@@ -1,4 +1,5 @@
 import { getVerse, verifiedArabic } from './quran'
+import { indopakRuns, type Run } from './indopak'
 
 export type SegmentKind = 'quran' | 'hadith'
 
@@ -11,6 +12,8 @@ export interface Segment {
   /** For Qur'an segments: the ayah number shown in the end-of-ayah marker (omitted for partial verses). */
   ayahMarker?: number
   arabic: string
+  /** For Qur'an segments: the Indo-Pak script text, split into tajweed colour runs. */
+  indopak?: Run[]
   transliteration: string
   translation: string
 }
@@ -30,12 +33,16 @@ export interface Recitation {
 }
 
 const SAHEEH = 'English translation of the Qur’an: Saheeh International (via tanzil.net).'
+const INDOPAK =
+  'Indo-Pak script: Quran.com text (text_indopak), checked to have exactly the same letters as the verified KFGQPC text. Tajweed colours: Quran.com tajweed rules. Font: Al Qalam “Al QuranWBW”.'
 const KFGQPC =
   'Qur’an Arabic: Uthmani script of the King Fahd Glorious Qur’an Printing Complex (Ḥafṣ ʿan ʿĀṣim), via The Noble Qur’an Encyclopedia (quranenc.com), cross-checked letter-by-letter against the Tanzil Uthmani text.'
 
 interface QuranOptions {
   /** Start the Arabic at this 0-based word of the verse (partial verse). */
   fromWord?: number
+  /** The same starting word in the Indo-Pak text, where pause marks count as words. */
+  indopakFromWord?: number
   /** Display ayah marker; defaults to true for whole verses. */
   marker?: boolean
 }
@@ -54,6 +61,7 @@ function quran(key: string, transliteration: string, translation: string, opts: 
     verseKey: key,
     ayahMarker: whole && opts.marker !== false ? verse.ayah : undefined,
     arabic: verifiedArabic(key, opts.fromWord),
+    indopak: indopakRuns(key, opts.indopakFromWord),
     transliteration,
     translation,
   }
@@ -109,6 +117,7 @@ export const RECITATIONS: Record<string, Recitation> = {
       'Khuṭbat al-Ḥājah: narrated by ʿAbdullāh ibn Masʿūd — Sunan Abī Dāwūd 2118, Sunan al-Nasāʾī 3278 (graded ṣaḥīḥ by al-Albānī). The wording shown is the commonly recited form compiled by al-Albānī; some narrations are slightly shorter. English rendering of the opening is a plain-meaning translation.',
       'Qur’an verses recited with it in the narration: Āl ʿImrān 3:102, An-Nisāʾ 4:1, Al-Aḥzāb 33:70–71.',
       KFGQPC,
+      INDOPAK,
       SAHEEH,
     ],
   },
@@ -136,7 +145,7 @@ export const RECITATIONS: Record<string, Recitation> = {
         'Those are the ones upon whom are blessings from their Lord and mercy. And it is those who are the [rightly] guided.',
       ),
     ],
-    sources: [KFGQPC, SAHEEH],
+    sources: [KFGQPC, INDOPAK, SAHEEH],
   },
 
   talaq: {
@@ -159,6 +168,7 @@ export const RECITATIONS: Record<string, Recitation> = {
     ],
     sources: [
       KFGQPC,
+      INDOPAK,
       SAHEEH,
       'Note: 65:2 opens with rulings on divorce; the khutbah’s point is its closing sentence, “And whoever fears Allah – He will make for him a way out,” which continues into 65:3.',
     ],
@@ -191,6 +201,7 @@ export const RECITATIONS: Record<string, Recitation> = {
     sources: [
       'Al-ṣalāh al-Ibrāhīmiyyah: narrated by Kaʿb ibn ʿUjrah — Ṣaḥīḥ al-Bukhārī 3370 (also 6357) and Ṣaḥīḥ Muslim 406. English rendering of the salawat is a plain-meaning translation.',
       KFGQPC,
+      INDOPAK,
       SAHEEH,
     ],
   },
@@ -207,13 +218,13 @@ export const RECITATIONS: Record<string, Recitation> = {
         '7:126',
         'Rabbanaa afrigh ‘alaynaa sabraw-wa tawaffanaa muslimeen.',
         'Our Lord, pour upon us patience and let us die as Muslims [in submission to You].',
-        { fromWord: 10 },
+        { fromWord: 10, indopakFromWord: 11 },
       ),
       quran(
         '2:201',
         'Rabbanaa aatinaa fid-dunyaa hasanataw-wa fil-aakhirati hasanataw-wa qinaa ‘adhaaban-naar.',
         'Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire.',
-        { fromWord: 3 },
+        { fromWord: 3, indopakFromWord: 3 },
       ),
       quran('37:180', 'Subhaana rabbika rabbil-‘izzati ‘ammaa yasifoon.', 'Exalted is your Lord, the Lord of might, above what they describe.'),
       quran('37:181', 'Wa salaamun ‘alal-mursaleen.', 'And peace upon the messengers.'),
@@ -222,6 +233,7 @@ export const RECITATIONS: Record<string, Recitation> = {
     sources: [
       'Al-Aʿrāf 7:126 and Al-Baqarah 2:201 are shown from the word “رَبَّنَآ” (“Our Lord”) — the du‘a portion of each verse.',
       KFGQPC,
+      INDOPAK,
       SAHEEH,
     ],
   },

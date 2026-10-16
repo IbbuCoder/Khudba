@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { Recitation } from '../data/recitations'
 import { displayArabic, toArabicDigits } from '../data/quran'
+import { joinRuns, TAJWEED_LEGEND, toUrduDigits, type Run } from '../data/indopak'
 import { ARABIC_SCALE, type Settings } from '../storage'
 
 interface Props {
@@ -46,6 +47,8 @@ export function RecitationScreen({ recitation, nextText, theme, settings, onSett
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onReturn])
+
+  const indopak = settings.script === 'indopak'
 
   const setArabic = (delta: number) =>
     onSettings({
@@ -96,18 +99,34 @@ export function RecitationScreen({ recitation, nextText, theme, settings, onSett
         </div>
         <p className="step-hint">{recitation.instruction}</p>
 
+        {indopak && settings.tajweed && <TajweedLegend />}
+
         {recitation.segments.map((s, i) => (
           <div className="segment" key={i}>
             <div className="segment-ref">{s.ref}</div>
-            <p className="arabic" dir="rtl" lang="ar">
-              {s.kind === 'quran' ? displayArabic(s.arabic) : s.arabic}
-              {s.ayahMarker !== undefined && (
-                <span className="ayah-mark" aria-label={`end of verse ${s.ayahMarker}`}>
-                  {' '}
-                  ﴿{toArabicDigits(s.ayahMarker)}﴾
-                </span>
-              )}
-            </p>
+            {indopak ? (
+              <div className="mushaf">
+                <p className="arabic indopak" dir="rtl" lang="ar">
+                  {s.indopak ? <TajweedText runs={s.indopak} colour={settings.tajweed} /> : s.arabic}
+                  {s.ayahMarker !== undefined && (
+                    <span className="ayah-mark" aria-label={`end of verse ${s.ayahMarker}`}>
+                      {' '}
+                      {'\u06DD' + toUrduDigits(s.ayahMarker)}
+                    </span>
+                  )}
+                </p>
+              </div>
+            ) : (
+              <p className="arabic" dir="rtl" lang="ar">
+                {s.kind === 'quran' ? displayArabic(s.arabic) : s.arabic}
+                {s.ayahMarker !== undefined && (
+                  <span className="ayah-mark" aria-label={`end of verse ${s.ayahMarker}`}>
+                    {' '}
+                    ﴿{toArabicDigits(s.ayahMarker)}﴾
+                  </span>
+                )}
+              </p>
+            )}
             <p className="translit" lang="ar-Latn">
               {s.transliteration}
             </p>
@@ -154,6 +173,36 @@ export function RecitationScreen({ recitation, nextText, theme, settings, onSett
           </ul>
         </details>
       </main>
+    </div>
+  )
+}
+
+function TajweedText({ runs, colour }: { runs: Run[]; colour: boolean }) {
+  if (!colour) return <>{runs.map(([t]) => t).join('')}</>
+  return (
+    <>
+      {joinRuns(runs).map(([t, rule], i) =>
+        rule ? (
+          <span key={i} className={`tj tj-${rule}`}>
+            {t}
+          </span>
+        ) : (
+          t
+        ),
+      )}
+    </>
+  )
+}
+
+function TajweedLegend() {
+  return (
+    <div className="tajweed-legend" aria-label="Tajweed colour key">
+      {TAJWEED_LEGEND.map(({ rule, label }) => (
+        <span key={rule} className={`legend-item tj-${rule}`}>
+          <span className="legend-dot" aria-hidden />
+          {label}
+        </span>
+      ))}
     </div>
   )
 }

@@ -1,3 +1,10 @@
+/* Indo-Pak Qur'an script (Al Qalam "Al QuranWBW"), bundled for offline use. */
+@font-face {
+  font-family: 'Al Qalam Quran';
+  src: url('./fonts/al-qalam-quran-wbw.woff2') format('woff2');
+  font-display: block;
+}
+
 :root {
   --text-scale: 1;
   --arabic-scale: 1;
@@ -16,12 +23,22 @@
   --current-bg: #f3f9f5;
   --backdrop: rgba(0, 0, 0, 0.4);
 
+  --page: #fbf6e4;
+  --page-rule: #d8c79a;
+  --page-frame: #b8973f;
+  --tj-ghunnah: #d0103a;
+  --tj-idgham: #1d8a2f;
+  --tj-ikhfa: #1565c0;
+  --tj-iqlab: #8e24aa;
+  --tj-qalqalah: #e06c00;
+
   --bar-h: 56px;
   --nav-h: 68px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 
   --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-indopak: 'Al Qalam Quran', 'Amiri Quran', serif;
   --font-arabic: 'Amiri Quran', 'Amiri', 'KFGQPC Uthmanic Script HAFS', 'Geeza Pro', 'Traditional Arabic', serif;
 
   color-scheme: light;
@@ -41,6 +58,15 @@
   --border: #23302a;
   --current-bg: #08170f;
   --backdrop: rgba(0, 0, 0, 0.65);
+
+  --page: #0d0c08;
+  --page-rule: #3a3424;
+  --page-frame: #8a7434;
+  --tj-ghunnah: #ff6b81;
+  --tj-idgham: #5ad46e;
+  --tj-ikhfa: #64b5f6;
+  --tj-iqlab: #ce93d8;
+  --tj-qalqalah: #ffa94d;
   color-scheme: dark;
 }
 
@@ -668,9 +694,13 @@ button:disabled {
 }
 
 .arabic-sample {
-  font-family: var(--font-arabic);
+  font-family: var(--font-indopak);
   font-size: calc(1.9rem * var(--arabic-scale));
   line-height: 1.9;
+}
+
+.arabic-sample.uthmani {
+  font-family: var(--font-arabic);
 }
 
 .toggle input {
@@ -879,6 +909,80 @@ button:disabled {
 
 .sources li {
   margin-bottom: 6px;
+}
+
+/* ---------- Indo-Pak mushaf page ---------- */
+
+.mushaf {
+  margin: 8px 0 12px;
+  padding: 6px 18px;
+  border: 4px double var(--page-frame);
+  border-radius: 6px;
+  background: var(--page);
+}
+
+.arabic.indopak {
+  --ar-size: calc(2.3rem * var(--arabic-scale));
+  --ar-line: calc(var(--ar-size) * 2.05);
+  margin: 0;
+  font-family: var(--font-indopak);
+  font-size: var(--ar-size);
+  line-height: var(--ar-line);
+  word-spacing: 0.12em;
+  text-align: right;
+  color: var(--text);
+  /* Ruled lines under every row, like a printed mushaf. */
+  background-image: linear-gradient(to bottom, transparent calc(var(--ar-line) - 1.5px), var(--page-rule) calc(var(--ar-line) - 1.5px));
+  background-size: 100% var(--ar-line);
+}
+
+@media (min-width: 768px) {
+  .arabic.indopak {
+    --ar-size: calc(2.9rem * var(--arabic-scale));
+  }
+}
+
+.arabic.indopak .ayah-mark {
+  font-family: var(--font-indopak);
+  color: var(--green-text);
+}
+
+.tj-ghunnah {
+  color: var(--tj-ghunnah);
+}
+.tj-idgham {
+  color: var(--tj-idgham);
+}
+.tj-ikhfa {
+  color: var(--tj-ikhfa);
+}
+.tj-iqlab {
+  color: var(--tj-iqlab);
+}
+.tj-qalqalah {
+  color: var(--tj-qalqalah);
+}
+
+.tajweed-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 4px 0 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 @media (prefers-reduced-motion: reduce) {

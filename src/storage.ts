@@ -1,4 +1,5 @@
 export type ThemeSetting = 'light' | 'dark' | 'system'
+export type ArabicScript = 'indopak' | 'uthmani'
 
 export interface Settings {
   theme: ThemeSetting
@@ -6,6 +7,10 @@ export interface Settings {
   textScale: number
   /** Multiplier for Arabic on recitation screens. */
   arabicScale: number
+  /** Qur'an script style on recitation screens. */
+  script: ArabicScript
+  /** Colour tajweed rules in the Indo-Pak script. */
+  tajweed: boolean
   keepAwake: boolean
 }
 
@@ -20,6 +25,8 @@ export const DEFAULT_SETTINGS: Settings = {
   theme: 'light',
   textScale: 1,
   arabicScale: 1,
+  script: 'indopak',
+  tajweed: true,
   keepAwake: true,
 }
 
@@ -55,6 +62,8 @@ export function loadSettings(): Settings {
     theme: s.theme === 'dark' || s.theme === 'system' || s.theme === 'light' ? s.theme : DEFAULT_SETTINGS.theme,
     textScale: clamp(s.textScale, TEXT_SCALE, DEFAULT_SETTINGS.textScale),
     arabicScale: clamp(s.arabicScale, ARABIC_SCALE, DEFAULT_SETTINGS.arabicScale),
+    script: s.script === 'uthmani' || s.script === 'indopak' ? s.script : DEFAULT_SETTINGS.script,
+    tajweed: typeof s.tajweed === 'boolean' ? s.tajweed : DEFAULT_SETTINGS.tajweed,
     keepAwake: typeof s.keepAwake === 'boolean' ? s.keepAwake : DEFAULT_SETTINGS.keepAwake,
   }
 }
