@@ -15,6 +15,12 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <title>Khutbah Reader</title>
     <script>
+      // GitHub Pages "Deploy from a branch" serves this file unbuilt. Vite
+      // replaces %MODE% when it builds, so if the placeholder is still here we
+      // are the raw source: go to the built copy of the site in ./site/.
+      if ('%MODE%'.charAt(0) === '%') location.replace('./site/' + location.hash);
+    </script>
+    <script>
       // Apply the saved theme before first paint to avoid a white flash in dark mode.
       try {
         var s = JSON.parse(localStorage.getItem('khutbah-reader:settings') || '{}');
