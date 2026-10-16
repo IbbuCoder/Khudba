@@ -72,40 +72,17 @@ export const RECITATIONS: Record<string, Recitation> = {
     segments: [
       {
         kind: 'hadith',
-        ref: 'Ṣaḥīḥ Muslim 868',
+        ref: 'Khutbah opening',
         arabic:
-          'إِنَّ الْحَمْدَ لِلَّهِ، نَحْمَدُهُ وَنَسْتَعِينُهُ، مَنْ يَهْدِهِ اللَّهُ فَلَا مُضِلَّ لَهُ، وَمَنْ يُضْلِلْ فَلَا هَادِيَ لَهُ، وَأَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
+          'اَلْحَمْدُ لِلّٰهِ نَحْمَدُهٗ وَنَسْتَعِيْنُهٗ وَنَسْتَغْفِرُهٗ وَنُؤْمِنُ بِهٖ وَنَتَوَكَّلُ عَلَيْهِ، وَنَعُوْذُ بِاللّٰهِ مِنْ شُرُوْرِ اَنْفُسِنَا وَمِنْ سَيِّئَاتِ اَعْمَالِنَا، مَنْ يَّهْدِهِ اللّٰهُ فَلَا مُضِلَّ لَهٗ، وَمَنْ يُّضْلِلْهُ فَلَا هَادِيَ لَهٗ، وَنَشْهَدُ اَنْ لَّا اِلٰهَ اِلَّا اللّٰهُ وَحْدَهٗ لَا شَرِيْكَ لَهٗ، وَنَشْهَدُ اَنَّ مُحَمَّدًا عَبْدُهٗ وَرَسُوْلُهٗ',
         transliteration:
-          'Innal-hamda lillaah, nahmaduhu wa nasta‘eenuh. Man yahdihil-laahu falaa mudilla lah, wa man yudlil falaa haadiya lah. Wa ashhadu al-laa ilaaha illallaahu wahdahu laa shareeka lah, wa ashhadu anna Muhammadan ‘abduhu wa rasooluh,',
+          'Al-hamdu lillaahi nahmaduhu wa nasta‘eenuhu wa nastaghfiruhu wa nu’minu bihee wa natawakkalu ‘alayh. Wa na‘oodhu billaahi min shuroori anfusinaa wa min sayyi’aati a‘maalinaa. Man yahdihil-laahu falaa mudilla lah, wa man yudlilhu falaa haadiya lah. Wa nashhadu al-laa ilaaha illallaahu wahdahu laa shareeka lah, wa nashhadu anna Muhammadan ‘abduhu wa rasooluh.',
         translation:
-          'Indeed, all praise belongs to Allah. We praise Him and seek His help. Whomever Allah guides, no one can lead astray, and whomever He leaves astray, no one can guide. I bear witness that there is no god but Allah alone, with no partner, and I bear witness that Muhammad is His servant and Messenger,',
-      },
-      {
-        kind: 'hadith',
-        ref: 'Salawat',
-        arabic: 'صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ',
-        transliteration: 'sallal-laahu ‘alayhi wa sallam.',
-        translation: 'may Allah send blessings and peace upon him.',
-      },
-      quran(
-        '3:102',
-        'Yaa ayyuhal-ladheena aamanut-taqul-laaha haqqa tuqaatihee wa laa tamootunna illaa wa antum muslimoon.',
-        'O you who have believed, fear Allah as He should be feared and do not die except as Muslims [in submission to Him].',
-      ),
-      {
-        kind: 'hadith',
-        ref: 'Transition',
-        arabic: 'أَمَّا بَعْدُ',
-        transliteration: 'Ammaa ba‘d.',
-        translation: 'As for what follows…',
+          'All praise belongs to Allah. We praise Him, seek His help and ask His forgiveness; we believe in Him and put our trust in Him. We seek refuge in Allah from the evils of our souls and from our bad deeds. Whomever Allah guides, no one can lead astray, and whomever He leaves astray, no one can guide. We bear witness that there is no god but Allah alone, with no partner, and we bear witness that Muhammad is His servant and Messenger.',
       },
     ],
     sources: [
-      'Opening praise and testimony: the khutbah the Prophet ﷺ gave to Ḍimād, Ṣaḥīḥ Muslim 868 (narrated by Ibn ʿAbbās), which ends with “ammā baʿd”. This is the short form of Khuṭbat al-Ḥājah; longer forms are in Sunan Abī Dāwūd 2118 and Sunan al-Nasāʾī 3278.',
-      'Short version for an 8-minute khutbah: it includes praise of Allah, the testimony, salawat (“ṣallā Allāhu ʿalayhi wa sallam”), the command to have taqwa and a Qur’an verse (Āl ʿImrān 3:102).',
-      KFGQPC,
-      INDOPAK,
-      SAHEEH,
+      'Khutbah opening: the wording supplied by the khateeb, a common Indo-Pak form of Khuṭbat al-Ḥājah. Its core is reported in Sunan Abī Dāwūd 2118, Sunan al-Nasāʾī 3278 and Ṣaḥīḥ Muslim 868; “wa nuʾminu bihi wa natawakkalu ʿalayh” is a customary addition.',
     ],
   },
 
