@@ -4,14 +4,13 @@ A private reading script for delivering the Friday khutbah **“Everything Has a
 
 ## Using it
 
-- **Read the English** as normal paragraphs. The paragraph you are on is marked with a green bar; the top bar shows the current section and the thin line at the very top shows progress.
-- **Boxed cues are never spoken.** ⏸️ PAUSE, 🪑 SIT BRIEFLY, 🧍 STAND UP, 🤲 MAKE DU‘A and 🏁 END are private instructions.
-- **Arabic style:** the Arabic pages use the Indo-Pak script on a ruled, framed mushaf-style page, with tajweed colours by default. Go to **Aa → Arabic style** to switch to the Uthmani (Madani) script, or **Aa → Tajweed colours** to turn the colours off.
-- **Arabic recitation:** when you reach a green 📖 ARABIC card, press **Open Arabic** (or the card’s button). The Arabic page has three plain steps: **1 · Recite the Arabic** (one mushaf page, with the transliteration below it), **2 · Read the English** (Qur’an passages only), then **↩️ Back to khutbah**. Nothing advances on its own. **↩️ Back to khutbah** takes you to the exact next paragraph. **← Back** in the top corner returns to the card instead.
-- **Previous / Next** step one block at a time. Arrow keys, Space, Page Up/Down and most Bluetooth page turners also work.
-- **☰ Contents** jumps to any section. **Aa** changes text size (English and Arabic separately), theme (light, dark or device) and keeps the screen awake. **⛶ Present** hides the menus. Press ✕ in the bottom bar to leave presentation mode.
-- Your place and settings are **saved on the device**. If the page reloads, it reopens where you were, even on the Arabic page.
-- **Offline:** open the site once with a connection. After that it loads without signal. On iPhone, use *Share → Add to Home Screen* to open it full-screen like an app.
+- **One continuous script** of about 10 minutes, in delivery order. The Arabic sits right in the script, so there are no separate pages to open.
+- **Read your English** as normal paragraphs. A green bar marks where you are, the top bar shows the section, and the thin line at the very top shows progress.
+- **📖 Recite in Arabic** blocks show the Arabic on a mushaf-style page (Indo-Pak script with tajweed colours), with the transliteration underneath. For Qur’an passages a **🇬🇧 Read the English** block follows.
+- **Boxed cues are never spoken:** ⏸️ Pause, 🪑 Sit briefly, 🧍 Stand up, 🤲 Make du‘a, 🏁 End of khutbah.
+- **Next / Previous** move one block at a time. If a block is taller than the screen, Next scrolls through it first, so nothing is skipped. Arrow keys, Space and Bluetooth page turners work too.
+- **☰ Contents** jumps to any section. **Aa** sets text sizes, light or dark mode, Arabic style (Indo-Pak or Uthmani), tajweed colours and keep-screen-awake. **⛶ Present** hides the menus.
+- Your place and settings are **saved on the device**. After the first visit the script **works offline**. On iPhone, use *Share → Add to Home Screen*.
 
 ## Sources and accuracy
 

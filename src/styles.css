@@ -313,35 +313,44 @@ button:disabled {
   font-size: 0.85em;
 }
 
-/* ---------- Arabic card in the script ---------- */
+/* ---------- Arabic passages, inline in the script ---------- */
 
-.recite-card {
-  margin: 0.6em 0 1.3em;
-  padding: 14px 16px 16px;
-  border: 2px solid var(--green);
-  border-radius: 16px;
-  background: var(--green-soft);
-  font-size: 0.75em;
-  line-height: 1.4;
+.recite-block,
+.english-block {
+  position: relative;
+  scroll-margin-top: calc(var(--bar-h) + 24px);
+  margin: 0.6em -12px 1.2em;
+  padding: 12px 12px 4px;
+  border-left: 4px solid transparent;
+  border-radius: 4px;
 }
 
-.recite-card.is-current {
-  box-shadow: 0 0 0 3px var(--green-text);
-}
-
-.recite-card.optional {
-  border-style: dashed;
+.recite-block.is-current,
+.english-block.is-current {
+  border-left-color: var(--green-text);
+  background: var(--current-bg);
 }
 
 .recite-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.62em;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--green-text);
 }
 
+.recite-name {
+  margin: 2px 0 8px;
+  font-size: 0.7em;
+  font-weight: 700;
+  color: var(--muted);
+}
+
 .optional-tag {
-  margin-left: 8px;
+  margin-left: 4px;
   padding: 2px 8px;
   border-radius: 999px;
   background: var(--text);
@@ -349,24 +358,35 @@ button:disabled {
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  vertical-align: middle;
 }
 
-.recite-title {
-  margin: 4px 0 12px;
-  font-size: 1.3em;
-  line-height: 1.25;
+.speech-translation {
+  margin-top: 6px;
 }
 
-.open-recitation {
-  width: 100%;
-  min-height: 52px;
-  border: 0;
-  border-radius: 12px;
-  background: var(--green);
-  color: var(--on-green);
-  font-size: 1.05em;
+.speech-translation .translation {
+  margin: 0 0 0.8em;
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.sources {
+  margin-top: 2em;
+  font-size: 0.6em;
+  color: var(--muted);
+}
+
+.sources summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   font-weight: 700;
+}
+
+.sources li {
+  margin-bottom: 6px;
 }
 
 .end-spacer {
@@ -677,57 +697,7 @@ button:disabled {
   color: var(--muted);
 }
 
-/* ---------- Recitation screen ---------- */
-
-.recitation-bar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  min-height: calc(var(--bar-h) + var(--safe-top));
-  padding: var(--safe-top) max(6px, env(safe-area-inset-right)) 0 max(6px, env(safe-area-inset-left));
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-}
-
-.recitation-bar-spacer {
-  flex: 1;
-}
-
-.recitation-body {
-  max-width: 48rem;
-  margin: 0 auto;
-  padding: 16px max(18px, env(safe-area-inset-right)) calc(40px + var(--safe-bottom)) max(18px, env(safe-area-inset-left));
-}
-
-.recitation-title {
-  margin: 4px 0 6px;
-  font-size: 1.5rem;
-  line-height: 1.25;
-  outline: none;
-}
-
-.step {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 22px 0 10px;
-  font-size: 1.15rem;
-  color: var(--green-text);
-}
-
-.step-num {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--green);
-  color: var(--on-green);
-  font-size: 1rem;
-}
+/* ---------- Arabic text ---------- */
 
 .arabic {
   margin: 0;
@@ -784,11 +754,6 @@ button:disabled {
   color: var(--muted);
 }
 
-.translations.aloud .translation {
-  font-size: calc(1.3rem * var(--text-scale));
-  color: var(--text);
-}
-
 .meaning {
   margin-top: 18px;
   color: var(--muted);
@@ -801,36 +766,6 @@ button:disabled {
   cursor: pointer;
   font-weight: 700;
   color: var(--green-text);
-}
-
-.return-btn {
-  width: 100%;
-  min-height: 60px;
-  margin: 28px 0 8px;
-  border: 0;
-  border-radius: 14px;
-  background: var(--green);
-  color: var(--on-green);
-  font-size: 1.2rem;
-  font-weight: 800;
-}
-
-.sources {
-  margin-top: 20px;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.sources summary {
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.sources li {
-  margin-bottom: 6px;
 }
 
 /* ---------- Indo-Pak mushaf page ---------- */

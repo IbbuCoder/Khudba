@@ -4,7 +4,6 @@ import { RECITATIONS } from './data/recitations'
 import { loadPosition, loadSettings, savePosition, saveSettings, type Settings } from './storage'
 import { useEffectiveTheme, useWakeLock } from './hooks'
 import { ScriptBlock } from './components/ScriptBlock'
-import { RecitationScreen } from './components/RecitationScreen'
 import { TocPanel } from './components/TocPanel'
 import { SettingsPanel } from './components/SettingsPanel'
 
@@ -12,6 +11,13 @@ type Panel = 'toc' | 'settings' | null
 
 /** Distance (px) below the top bar at which the current block is placed. */
 const READING_GAP = 20
+
+const ALL_SOURCES = [
+  ...new Set([
+    ...Object.values(RECITATIONS).flatMap((r) => r.sources),
+    'Hadith of the believer’s affairs (paraphrased in the first khutbah): Ṣaḥīḥ Muslim 2999, narrated by Ṣuhayb.',
+  ]),
+]
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -23,20 +29,17 @@ export default function App() {
     return i >= 0 ? i : 0
   }, [saved])
   const [current, setCurrent] = useState(initialIndex)
-  const [reciteIndex, setReciteIndex] = useState<number | null>(() => {
-    const i = saved?.recitationBlockId ? BLOCKS.findIndex((b) => b.id === saved.recitationBlockId) : -1
-    return i >= 0 && BLOCKS[i].type === 'recite' ? i : null
-  })
   const [panel, setPanel] = useState<Panel>(null)
   const [presentation, setPresentation] = useState(false)
   const [restoredNotice, setRestoredNotice] = useState(initialIndex > 0)
 
   const blockRefs = useRef<(HTMLElement | null)[]>([])
   const topBarRef = useRef<HTMLElement>(null)
+  const navRef = useRef<HTMLElement>(null)
   /** Set while we scroll programmatically, so the scroll listener doesn't fight us. */
   const scrollingTo = useRef<number | null>(null)
   const scrollTimer = useRef<number | undefined>(undefined)
-  /** Block to scroll to once the reader becomes visible again (after a recitation). */
+  /** Block to scroll to after the layout changes (first load, presentation mode). */
   const pendingScroll = useRef<number | null>(initialIndex > 0 ? initialIndex : null)
 
   const theme = useEffectiveTheme(settings.theme)
@@ -45,11 +48,8 @@ export default function App() {
   useEffect(() => saveSettings(settings), [settings])
 
   useEffect(() => {
-    savePosition({
-      blockId: BLOCKS[current].id,
-      recitationBlockId: reciteIndex !== null ? BLOCKS[reciteIndex].id : undefined,
-    })
-  }, [current, reciteIndex])
+    savePosition({ blockId: BLOCKS[current].id })
+  }, [current])
 
   useEffect(() => {
     const root = document.documentElement
@@ -79,7 +79,6 @@ export default function App() {
 
   // Track the block at the reading line while the user scrolls by hand.
   useEffect(() => {
-    if (reciteIndex !== null) return
     let frame = 0
     const update = () => {
       frame = 0
@@ -109,38 +108,29 @@ export default function App() {
       window.removeEventListener('scrollend', onScrollEnd)
       cancelAnimationFrame(frame)
     }
-  }, [reciteIndex, topOffset])
+  }, [topOffset])
 
-  // After returning from a recitation (or on first load), jump to the right block.
+  // On first load and after toggling presentation mode, jump to the right block.
   useLayoutEffect(() => {
-    if (reciteIndex !== null || pendingScroll.current === null) return
+    if (pendingScroll.current === null) return
     const target = pendingScroll.current
     pendingScroll.current = null
     scrollToBlock(target, false)
-  }, [reciteIndex, presentation, scrollToBlock])
-
-  const openRecitation = useCallback((index: number) => {
-    setPanel(null)
-    setCurrent(index)
-    setReciteIndex(index)
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [])
-
-  const closeRecitation = useCallback(
-    (advance: boolean) => {
-      if (reciteIndex === null) return
-      pendingScroll.current = advance ? Math.min(reciteIndex + 1, BLOCKS.length - 1) : reciteIndex
-      setReciteIndex(null)
-    },
-    [reciteIndex],
-  )
+  }, [presentation, scrollToBlock])
 
   const goNext = useCallback(() => {
     setRestoredNotice(false)
-    const block = BLOCKS[current]
-    if (block.type === 'recite') return openRecitation(current)
+    // A long block (e.g. an Arabic passage) that runs past the bottom of the
+    // screen is paged through first, so nothing gets skipped.
+    const el = blockRefs.current[current]
+    const visibleBottom = window.innerHeight - (navRef.current?.offsetHeight ?? 0) - 12
+    if (el && el.getBoundingClientRect().bottom > visibleBottom) {
+      const step = Math.max(120, visibleBottom - topOffset() - 60)
+      window.scrollBy({ top: step, behavior: prefersReducedMotion() ? 'instant' : 'smooth' })
+      return
+    }
     if (current < BLOCKS.length - 1) scrollToBlock(current + 1, true)
-  }, [current, openRecitation, scrollToBlock])
+  }, [current, scrollToBlock, topOffset])
 
   const goPrev = useCallback(() => {
     setRestoredNotice(false)
@@ -182,7 +172,6 @@ export default function App() {
 
   // Keyboard and Bluetooth page-turner support for the reading view.
   useEffect(() => {
-    if (reciteIndex !== null) return
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return
       if (panel) {
@@ -203,7 +192,7 @@ export default function App() {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [reciteIndex, panel, presentation, goNext, goPrev, togglePresentation])
+  }, [panel, presentation, goNext, goPrev, togglePresentation])
 
   const updateSettings = useCallback((patch: Partial<Settings>) => setSettings((s) => ({ ...s, ...patch })), [])
 
@@ -211,24 +200,10 @@ export default function App() {
   const section = SECTIONS[block.sectionIndex]
   const progress = BLOCKS.length > 1 ? current / (BLOCKS.length - 1) : 1
   const atEnd = current >= BLOCKS.length - 1
-  const nextLabel = block.type === 'recite' ? 'Open Arabic' : atEnd ? 'End' : 'Next'
-
-  const reciteBlock = reciteIndex !== null ? BLOCKS[reciteIndex] : null
-  const recitation = reciteBlock?.type === 'recite' ? RECITATIONS[reciteBlock.recitationId] : null
 
   return (
     <>
-      {recitation && reciteIndex !== null && (
-        <RecitationScreen
-          recitation={recitation}
-          theme={theme}
-          settings={settings}
-          onSettings={updateSettings}
-          onReturn={closeRecitation}
-        />
-      )}
-
-      <div className={`reader${presentation ? ' presenting' : ''}`} hidden={reciteIndex !== null}>
+      <div className={`reader${presentation ? ' presenting' : ''}`}>
         <div className="progress" role="progressbar" aria-label="Progress through khutbah" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
           <div className="progress-fill" style={{ transform: `scaleX(${progress})` }} />
         </div>
@@ -263,10 +238,18 @@ export default function App() {
               ref={(el) => {
                 blockRefs.current[b.index] = el
               }}
+              settings={settings}
               onSelect={() => scrollToBlock(b.index, true)}
-              onOpenRecitation={() => openRecitation(b.index)}
             />
           ))}
+          <details className="sources">
+            <summary>Sources</summary>
+            <ul>
+              {ALL_SOURCES.map((src) => (
+                <li key={src}>{src}</li>
+              ))}
+            </ul>
+          </details>
           <div className="end-spacer" />
         </main>
 
@@ -280,7 +263,7 @@ export default function App() {
           </div>
         )}
 
-        <nav className="bottombar" aria-label="Script navigation">
+        <nav className="bottombar" aria-label="Script navigation" ref={navRef}>
           <button className="nav-btn" onClick={goPrev} disabled={current === 0}>
             ‹ Previous
           </button>
@@ -293,8 +276,8 @@ export default function App() {
             <span className="bottom-section">{presentation ? section.title : `Section ${block.sectionIndex + 1} of ${SECTIONS.length}`}</span>
             <span className="bottom-percent">{Math.round(progress * 100)}%</span>
           </div>
-          <button className={`nav-btn primary${block.type === 'recite' ? ' recite' : ''}`} onClick={goNext} disabled={atEnd}>
-            {nextLabel} ›
+          <button className="nav-btn primary" onClick={goNext} disabled={atEnd}>
+            Next ›
           </button>
         </nav>
 

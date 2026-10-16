@@ -1,6 +1,6 @@
 /* Khutbah Reader offline cache — generated at build time */
-const CACHE = 'khutbah-reader-c1b325aad98b';
-const FILES = ["./","assets/al-qalam-quran-wbw-3R6CK43s.woff2","assets/amiri-quran-arabic-400-normal-wRcqfVJx.woff2","assets/amiri-quran-arabic-400-normal-CZ144KtP.woff","assets/index-Dw0k8YdC.css","assets/index-DzrMF16W.js","index.html","manifest.webmanifest","icon.svg","apple-touch-icon.png","icon-192.png","icon-512.png"];
+const CACHE = 'khutbah-reader-df4189278050';
+const FILES = ["./","assets/amiri-quran-arabic-400-normal-wRcqfVJx.woff2","assets/al-qalam-quran-wbw-3R6CK43s.woff2","assets/amiri-quran-arabic-400-normal-CZ144KtP.woff","assets/index-XhQFoxW2.css","assets/index-BkZnqjkp.js","index.html","manifest.webmanifest","icon.svg","apple-touch-icon.png","icon-192.png","icon-512.png"];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

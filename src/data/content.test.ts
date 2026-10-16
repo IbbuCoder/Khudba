@@ -80,8 +80,8 @@ describe('Khutbah script', () => {
     }
   })
 
-  it('has all five recitation screens, in delivery order', () => {
-    const order = BLOCKS.flatMap((b) => (b.type === 'recite' ? [b.recitationId] : []))
+  it('has all five Arabic passages inline, in delivery order', () => {
+    const order = BLOCKS.flatMap((b) => (b.type === 'arabic' ? [b.recitationId] : []))
     expect(order).toEqual(['opening', 'baqarah', 'talaq', 'second-praise', 'closing-dua'])
     for (const id of order) expect(RECITATIONS[id]).toBeDefined()
   })
@@ -95,9 +95,15 @@ describe('Khutbah script', () => {
     expect(count('end')).toBe(1)
   })
 
-  it('follows each recitation with the block the speaker returns to', () => {
+  it('follows each Qur’an passage with its English, read aloud', () => {
     BLOCKS.forEach((b, i) => {
-      if (b.type === 'recite') expect(BLOCKS[i + 1], `after ${b.id}`).toBeDefined()
+      if (b.type !== 'arabic') return
+      const next = BLOCKS[i + 1]
+      if (RECITATIONS[b.recitationId].readTranslationAloud) {
+        expect(next.type === 'translation' && next.recitationId === b.recitationId, b.id).toBe(true)
+      } else {
+        expect(next.type, b.id).not.toBe('translation')
+      }
     })
   })
 

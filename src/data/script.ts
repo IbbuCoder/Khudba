@@ -6,6 +6,8 @@
  * Spoken English is only ever in `para` blocks.
  */
 
+import { RECITATIONS } from './recitations'
+
 export type CueKind = 'pause' | 'sit' | 'stand' | 'dua' | 'end'
 
 export type BlockInput =
@@ -224,15 +226,33 @@ export const SECTIONS: SectionInput[] = [
   },
 ]
 
-export type Block = BlockInput & {
+/** Script blocks after expansion: each recitation becomes its Arabic and, for
+ * Qur'an passages read aloud, its English translation. */
+export type FlatBlock =
+  | Exclude<BlockInput, { type: 'recite' }>
+  | { type: 'arabic'; recitationId: string }
+  | { type: 'translation'; recitationId: string }
+
+export type Block = FlatBlock & {
   id: string
   index: number
   sectionId: string
   sectionIndex: number
 }
 
+function expand(b: BlockInput, id: string): (FlatBlock & { id: string })[] {
+  if (b.type !== 'recite') return [{ ...b, id }]
+  const out: (FlatBlock & { id: string })[] = [{ type: 'arabic', recitationId: b.recitationId, id: `${id}-arabic` }]
+  if (RECITATIONS[b.recitationId].readTranslationAloud) {
+    out.push({ type: 'translation', recitationId: b.recitationId, id: `${id}-english` })
+  }
+  return out
+}
+
 export const BLOCKS: Block[] = SECTIONS.flatMap((section, sectionIndex) =>
-  section.blocks.map((b, i) => ({ ...b, id: `${section.id}-${i}`, sectionId: section.id, sectionIndex, index: 0 })),
+  section.blocks.flatMap((b, i) =>
+    expand(b, `${section.id}-${i}`).map((x) => ({ ...x, sectionId: section.id, sectionIndex, index: 0 })),
+  ),
 ).map((b, index) => ({ ...b, index }))
 
 export const SECTION_START: number[] = SECTIONS.map((s) => BLOCKS.findIndex((b) => b.sectionId === s.id))

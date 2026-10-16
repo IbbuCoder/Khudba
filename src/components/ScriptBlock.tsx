@@ -1,6 +1,8 @@
 import type { Ref } from 'react'
 import type { Block, CueKind } from '../data/script'
 import { RECITATIONS } from '../data/recitations'
+import type { Settings } from '../storage'
+import { ArabicContent, Translations } from './Recitation'
 
 const CUES: Record<CueKind, { icon: string; label: string }> = {
   pause: { icon: '⏸️', label: 'Pause' },
@@ -14,11 +16,11 @@ interface Props {
   block: Block
   isCurrent: boolean
   ref: Ref<HTMLElement>
+  settings: Settings
   onSelect: () => void
-  onOpenRecitation: () => void
 }
 
-export function ScriptBlock({ block, isCurrent, ref, onSelect, onOpenRecitation }: Props) {
+export function ScriptBlock({ block, isCurrent, ref, settings, onSelect }: Props) {
   const current = isCurrent ? ' is-current' : ''
 
   switch (block.type) {
@@ -58,21 +60,34 @@ export function ScriptBlock({ block, isCurrent, ref, onSelect, onOpenRecitation 
       )
     }
 
-    case 'recite': {
+    case 'arabic': {
       const r = RECITATIONS[block.recitationId]
       return (
         <section
-          className={`recite-card${r.optional ? ' optional' : ''}${current}`}
+          className={`recite-block${r.optional ? ' optional' : ''}${current}`}
           ref={ref as Ref<HTMLElement>}
-          aria-label={`Instruction: recite ${r.title} in Arabic`}
+          aria-label={`Recite in Arabic: ${r.title}`}
         >
           <div className="recite-label">
-            <span aria-hidden>📖</span> Arabic{r.optional && <span className="optional-tag">Optional</span>}
+            <span aria-hidden>📖</span> Recite in Arabic
+            {r.optional && <span className="optional-tag">Optional</span>}
           </div>
-          <h3 className="recite-title">{r.title}</h3>
-          <button className="open-recitation" onClick={onOpenRecitation}>
-            Open Arabic page →
-          </button>
+          <div className="recite-name">{r.title}</div>
+          <ArabicContent recitation={r} settings={settings} />
+        </section>
+      )
+    }
+
+    case 'translation': {
+      const r = RECITATIONS[block.recitationId]
+      return (
+        <section className={`english-block${current}`} ref={ref as Ref<HTMLElement>} onClick={onSelect}>
+          <div className="recite-label">
+            <span aria-hidden>🇬🇧</span> Read the English
+          </div>
+          <div className="speech-translation">
+            <Translations recitation={r} />
+          </div>
         </section>
       )
     }
