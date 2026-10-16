@@ -1,0 +1,49 @@
+# Khutbah Reader
+
+A private reading script for delivering the Friday khutbah **“Everything Has a Reason — Trusting Allah’s Wisdom”** from a phone, tablet or laptop. It is not a slideshow and it never reads anything aloud.
+
+## Using it
+
+- **Read the English** as normal paragraphs. The paragraph you are on is marked with a green bar; the top bar shows the current section and the thin line at the very top shows progress.
+- **Boxed cues are never spoken.** ⏸️ PAUSE, 🪑 SIT BRIEFLY, 🧍 STAND, 🤲 ENGLISH DU‘A, 🏁 END and 📚 reference notes are private instructions.
+- **Arabic recitation:** when you reach a green 📖 RECITE ARABIC card, press **Open Arabic** (or the card’s button). The Arabic page shows the Arabic, the transliteration under each verse, then the 🇬🇧 English translation. Nothing advances on its own. Press **↩️ Return to khutbah** to go to the exact next paragraph. Press **← Khutbah** in the top corner to go back to the card instead.
+- **Previous / Next** step one block at a time. Arrow keys, Space, Page Up/Down and most Bluetooth page turners also work.
+- **☰ Contents** jumps to any section. **Aa** changes text size (English and Arabic separately), theme (light, dark or device) and keeps the screen awake. **⛶ Present** hides the menus. Press ✕ in the bottom bar to leave presentation mode.
+- Your place and settings are **saved on the device**. If the page reloads, it reopens where you were, even on the Arabic page.
+- **Offline:** open the site once with a connection. After that it loads without signal. On iPhone, use *Share → Add to Home Screen* to open it full-screen like an app.
+
+## Sources and accuracy
+
+| Content | Source |
+| --- | --- |
+| Qur’an Arabic (all verses) | Uthmani text of the King Fahd Glorious Qur’an Printing Complex (Ḥafṣ), via The Noble Qur’an Encyclopedia ([quranenc.com](https://quranenc.com)), from the [`quran-json`](https://github.com/risan/quran-json) package (CC-BY-SA 4.0). Cross-checked letter by letter against the independent Tanzil Uthmani text. Stored in `src/data/quran-verified.json`. |
+| Qur’an English | **Saheeh International**, via [tanzil.net](https://tanzil.net/trans/en.sahih) |
+| Khutbah opening | Khuṭbat al-Ḥājah, narrated by ʿAbdullāh ibn Masʿūd. Sources: Sunan Abī Dāwūd 2118 and Sunan al-Nasāʾī 3278. Recited with 3:102, 4:1 and 33:70–71. |
+| Salawat (second khutbah) | Al-ṣalāh al-Ibrāhīmiyyah, narrated by Kaʿb ibn ʿUjrah. Sources: Ṣaḥīḥ al-Bukhārī 3370 and Ṣaḥīḥ Muslim 406. Preceded by 1:2 and 33:56. |
+| Optional Arabic du‘a | 7:126 and 2:201, each from “رَبَّنَآ”, then 37:180–182 |
+| Hadith of the believer’s affairs | Ṣaḥīḥ Muslim 2999, narrated by Ṣuhayb. It appears as a private reference note under the paraphrase. |
+| Transliterations | Simplified, readable transliterations written for this script |
+
+Safeguards (enforced by `npm test`):
+
+- Qur’anic Arabic is never typed by hand. It always comes from the verified data file. Partial verses are sliced by word position.
+- Every Qur’an translation must match the Saheeh International wording.
+- Spoken paragraphs may not contain bracketed stage directions, and every cue from the original script must be present.
+
+Display note: the KFGQPC text writes the open tanween with U+0656, U+0657 and U+065E. When the page draws these verses, they are mapped to the standard U+08F0–U+08F2 so the bundled Amiri Quran font shows the right marks. The stored text is not changed.
+
+## Development
+
+```bash
+npm install
+npm run dev      # local dev server
+npm test         # content & accuracy checks
+npm run build    # production build in dist/
+npm run preview  # serve the production build
+```
+
+The khutbah text is in `src/data/script.ts`. The recitation pages are in `src/data/recitations.ts`.
+
+## Deployment (GitHub Pages)
+
+`.github/workflows/deploy.yml` tests, builds and deploys on every push to `main`. One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**. The site uses relative paths, so it works at `https://<user>.github.io/<repo>/`.
