@@ -13,26 +13,12 @@
       "arabic": "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
       "translation": "[All] praise is [due] to Allah, Lord of the worlds"
     },
-    "2:155": {
+    "2:153": {
       "surah": 2,
       "surahName": "Al-Baqarah",
-      "ayah": 155,
-      "arabic": "وَلَنَبۡلُوَنَّكُم بِشَيۡءٖ مِّنَ ٱلۡخَوۡفِ وَٱلۡجُوعِ وَنَقۡصٖ مِّنَ ٱلۡأَمۡوَٰلِ وَٱلۡأَنفُسِ وَٱلثَّمَرَٰتِۗ وَبَشِّرِ ٱلصَّـٰبِرِينَ",
-      "translation": "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits, but give good tidings to the patient"
-    },
-    "2:156": {
-      "surah": 2,
-      "surahName": "Al-Baqarah",
-      "ayah": 156,
-      "arabic": "ٱلَّذِينَ إِذَآ أَصَٰبَتۡهُم مُّصِيبَةٞ قَالُوٓاْ إِنَّا لِلَّهِ وَإِنَّآ إِلَيۡهِ رَٰجِعُونَ",
-      "translation": "Who, when disaster strikes them, say, \"Indeed we belong to Allah, and indeed to Him we will return"
-    },
-    "2:157": {
-      "surah": 2,
-      "surahName": "Al-Baqarah",
-      "ayah": 157,
-      "arabic": "أُوْلَـٰٓئِكَ عَلَيۡهِمۡ صَلَوَٰتٞ مِّن رَّبِّهِمۡ وَرَحۡمَةٞۖ وَأُوْلَـٰٓئِكَ هُمُ ٱلۡمُهۡتَدُونَ",
-      "translation": "Those are the ones upon whom are blessings from their Lord and mercy. And it is those who are the [rightly] guided"
+      "ayah": 153,
+      "arabic": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱسۡتَعِينُواْ بِٱلصَّبۡرِ وَٱلصَّلَوٰةِۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّـٰبِرِينَ",
+      "translation": "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient"
     },
     "2:201": {
       "surah": 2,
@@ -41,82 +27,33 @@
       "arabic": "وَمِنۡهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِي ٱلدُّنۡيَا حَسَنَةٗ وَفِي ٱلۡأٓخِرَةِ حَسَنَةٗ وَقِنَا عَذَابَ ٱلنَّارِ",
       "translation": "But among them is he who says, \"Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire"
     },
-    "3:102": {
-      "surah": 3,
-      "surahName": "Ali 'Imran",
-      "ayah": 102,
-      "arabic": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱتَّقُواْ ٱللَّهَ حَقَّ تُقَاتِهِۦ وَلَا تَمُوتُنَّ إِلَّا وَأَنتُم مُّسۡلِمُونَ",
-      "translation": "O you who have believed, fear Allah as He should be feared and do not die except as Muslims [in submission to Him]"
+    "2:216": {
+      "surah": 2,
+      "surahName": "Al-Baqarah",
+      "ayah": 216,
+      "arabic": "كُتِبَ عَلَيۡكُمُ ٱلۡقِتَالُ وَهُوَ كُرۡهٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تَكۡرَهُواْ شَيۡـٔٗا وَهُوَ خَيۡرٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تُحِبُّواْ شَيۡـٔٗا وَهُوَ شَرّٞ لَّكُمۡۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ",
+      "translation": "Fighting has been enjoined upon you while it is hateful to you. But perhaps you hate a thing and it is good for you; and perhaps you love a thing and it is bad for you. And Allah Knows, while you know not"
     },
-    "4:1": {
-      "surah": 4,
-      "surahName": "An-Nisa",
-      "ayah": 1,
-      "arabic": "يَـٰٓأَيُّهَا ٱلنَّاسُ ٱتَّقُواْ رَبَّكُمُ ٱلَّذِي خَلَقَكُم مِّن نَّفۡسٖ وَٰحِدَةٖ وَخَلَقَ مِنۡهَا زَوۡجَهَا وَبَثَّ مِنۡهُمَا رِجَالٗا كَثِيرٗا وَنِسَآءٗۚ وَٱتَّقُواْ ٱللَّهَ ٱلَّذِي تَسَآءَلُونَ بِهِۦ وَٱلۡأَرۡحَامَۚ إِنَّ ٱللَّهَ كَانَ عَلَيۡكُمۡ رَقِيبٗا",
-      "translation": "O mankind, fear your Lord, who created you from one soul and created from it its mate and dispersed from both of them many men and women. And fear Allah, through whom you ask one another, and the wombs. Indeed Allah is ever, over you, an Observer"
+    "12:90": {
+      "surah": 12,
+      "surahName": "Yusuf",
+      "ayah": 90,
+      "arabic": "قَالُوٓاْ أَءِنَّكَ لَأَنتَ يُوسُفُۖ قَالَ أَنَا۠ يُوسُفُ وَهَٰذَآ أَخِيۖ قَدۡ مَنَّ ٱللَّهُ عَلَيۡنَآۖ إِنَّهُۥ مَن يَتَّقِ وَيَصۡبِرۡ فَإِنَّ ٱللَّهَ لَا يُضِيعُ أَجۡرَ ٱلۡمُحۡسِنِينَ",
+      "translation": "They said, \"Are you indeed Joseph?\" He said \"I am Joseph, and this is my brother. Allah has certainly favored us. Indeed, he who fears Allah and is patient, then indeed, Allah does not allow to be lost the reward of those who do good"
     },
-    "7:126": {
-      "surah": 7,
-      "surahName": "Al-A'raf",
-      "ayah": 126,
-      "arabic": "وَمَا تَنقِمُ مِنَّآ إِلَّآ أَنۡ ءَامَنَّا بِـَٔايَٰتِ رَبِّنَا لَمَّا جَآءَتۡنَاۚ رَبَّنَآ أَفۡرِغۡ عَلَيۡنَا صَبۡرٗا وَتَوَفَّنَا مُسۡلِمِينَ",
-      "translation": "And you do not resent us except because we believed in the signs of our Lord when they came to us. Our Lord, pour upon us patience and let us die as Muslims [in submission to You]"
+    "94:5": {
+      "surah": 94,
+      "surahName": "Ash-Sharh",
+      "ayah": 5,
+      "arabic": "فَإِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرًا",
+      "translation": "For indeed, with hardship [will be] ease"
     },
-    "33:56": {
-      "surah": 33,
-      "surahName": "Al-Ahzab",
-      "ayah": 56,
-      "arabic": "إِنَّ ٱللَّهَ وَمَلَـٰٓئِكَتَهُۥ يُصَلُّونَ عَلَى ٱلنَّبِيِّۚ يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ صَلُّواْ عَلَيۡهِ وَسَلِّمُواْ تَسۡلِيمًا",
-      "translation": "Indeed, Allah confers blessing upon the Prophet, and His angels [ask Him to do so]. O you who have believed, ask [Allah to confer] blessing upon him and ask [Allah to grant him] peace"
-    },
-    "33:70": {
-      "surah": 33,
-      "surahName": "Al-Ahzab",
-      "ayah": 70,
-      "arabic": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱتَّقُواْ ٱللَّهَ وَقُولُواْ قَوۡلٗا سَدِيدٗا",
-      "translation": "O you who have believed, fear Allah and speak words of appropriate justice"
-    },
-    "33:71": {
-      "surah": 33,
-      "surahName": "Al-Ahzab",
-      "ayah": 71,
-      "arabic": "يُصۡلِحۡ لَكُمۡ أَعۡمَٰلَكُمۡ وَيَغۡفِرۡ لَكُمۡ ذُنُوبَكُمۡۗ وَمَن يُطِعِ ٱللَّهَ وَرَسُولَهُۥ فَقَدۡ فَازَ فَوۡزًا عَظِيمًا",
-      "translation": "He will [then] amend for you your deeds and forgive you your sins. And whoever obeys Allah and His Messenger has certainly attained a great attainment"
-    },
-    "37:180": {
-      "surah": 37,
-      "surahName": "As-Saffat",
-      "ayah": 180,
-      "arabic": "سُبۡحَٰنَ رَبِّكَ رَبِّ ٱلۡعِزَّةِ عَمَّا يَصِفُونَ",
-      "translation": "Exalted is your Lord, the Lord of might, above what they describe"
-    },
-    "37:181": {
-      "surah": 37,
-      "surahName": "As-Saffat",
-      "ayah": 181,
-      "arabic": "وَسَلَٰمٌ عَلَى ٱلۡمُرۡسَلِينَ",
-      "translation": "And peace upon the messengers"
-    },
-    "37:182": {
-      "surah": 37,
-      "surahName": "As-Saffat",
-      "ayah": 182,
-      "arabic": "وَٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
-      "translation": "And praise to Allah, Lord of the worlds"
-    },
-    "65:2": {
-      "surah": 65,
-      "surahName": "At-Talaq",
-      "ayah": 2,
-      "arabic": "فَإِذَا بَلَغۡنَ أَجَلَهُنَّ فَأَمۡسِكُوهُنَّ بِمَعۡرُوفٍ أَوۡ فَارِقُوهُنَّ بِمَعۡرُوفٖ وَأَشۡهِدُواْ ذَوَيۡ عَدۡلٖ مِّنكُمۡ وَأَقِيمُواْ ٱلشَّهَٰدَةَ لِلَّهِۚ ذَٰلِكُمۡ يُوعَظُ بِهِۦ مَن كَانَ يُؤۡمِنُ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۚ وَمَن يَتَّقِ ٱللَّهَ يَجۡعَل لَّهُۥ مَخۡرَجٗا",
-      "translation": "And when they have [nearly] fulfilled their term, either retain them according to acceptable terms or part with them according to acceptable terms. And bring to witness two just men from among you and establish the testimony for [the acceptance of] Allah. That is instructed to whoever should believe in Allah and the Last day. And whoever fears Allah - He will make for him a way out"
-    },
-    "65:3": {
-      "surah": 65,
-      "surahName": "At-Talaq",
-      "ayah": 3,
-      "arabic": "وَيَرۡزُقۡهُ مِنۡ حَيۡثُ لَا يَحۡتَسِبُۚ وَمَن يَتَوَكَّلۡ عَلَى ٱللَّهِ فَهُوَ حَسۡبُهُۥٓۚ إِنَّ ٱللَّهَ بَٰلِغُ أَمۡرِهِۦۚ قَدۡ جَعَلَ ٱللَّهُ لِكُلِّ شَيۡءٖ قَدۡرٗا",
-      "translation": "And will provide for him from where he does not expect. And whoever relies upon Allah - then He is sufficient for him. Indeed, Allah will accomplish His purpose. Allah has already set for everything a [decreed] extent"
+    "94:6": {
+      "surah": 94,
+      "surahName": "Ash-Sharh",
+      "ayah": 6,
+      "arabic": "إِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرٗا",
+      "translation": "Indeed, with hardship [will be] ease"
     }
   }
 }

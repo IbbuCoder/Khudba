@@ -24,9 +24,10 @@ A private reading script for delivering the Friday khutbah **“Everything Has a
 | Tajweed colours | Quran.com tajweed rules (`text_uthmani_tajweed`), matched letter by letter onto the Indo-Pak text: ghunnah (red), idghām (green), ikhfāʾ (blue), iqlāb (purple), qalqalah (orange). |
 | Indo-Pak font | Al Qalam “Al QuranWBW” (© Al Qalam; credits Abdul Majeed Khan, Arif Karim, Shakir-ul-Qadree), distributed free for Qur’an use, from the `arabic-fonts` package |
 | Qur’an English | **Saheeh International**, via [tanzil.net](https://tanzil.net/trans/en.sahih) |
-| Khutbah opening | Khuṭbat al-Ḥājah, narrated by ʿAbdullāh ibn Masʿūd. Sources: Sunan Abī Dāwūd 2118 and Sunan al-Nasāʾī 3278. Recited with 3:102, 4:1 and 33:70–71. |
-| Salawat (second khutbah) | Al-ṣalāh al-Ibrāhīmiyyah, narrated by Kaʿb ibn ʿUjrah. Sources: Ṣaḥīḥ al-Bukhārī 3370 and Ṣaḥīḥ Muslim 406. Preceded by 1:2 and 33:56. |
-| Optional Arabic du‘a | 7:126 and 2:201, each from “رَبَّنَآ”, then 37:180–182 |
+| Khutbah opening | The khateeb’s own text: a common Indo-Pak form of Khuṭbat al-Ḥājah (core in Sunan Abī Dāwūd 2118, Sunan al-Nasāʾī 3278 and Ṣaḥīḥ Muslim 868). |
+| Qur’an quotes in the khutbah | Al-Baqarah 2:216 (from “wa ʿasā”), Yusuf 12:90 (from “innahu”), Ash-Sharh 94:5–6, Al-Baqarah 2:153 (from “inna Allāha”). Yaʿqub’s words “So patience is most fitting” (12:18) are quoted in English. |
+| Salawat (second khutbah) | First part of al-ṣalāh al-Ibrāhīmiyyah, narrated by Kaʿb ibn ʿUjrah. Sources: Ṣaḥīḥ al-Bukhārī 3370 and Ṣaḥīḥ Muslim 406. Preceded by 1:2. |
+| Optional Arabic du‘a | 2:201 from “رَبَّنَآ” |
 | Hadith of the believer’s affairs | Ṣaḥīḥ Muslim 2999, narrated by Ṣuhayb. The khutbah paraphrases it in plain English. |
 | Transliterations | Simplified, readable transliterations written for this script |
 

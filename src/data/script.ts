@@ -38,107 +38,96 @@ export const SECTIONS: SectionInput[] = [
   },
   {
     id: 'why-me',
-    title: '“Why is this happening to me?”',
+    title: 'When life doesn’t make sense',
     part: 'First Khutbah',
     blocks: [
       say('My brothers and sisters,'),
-      say('Have you ever been through something and asked, “Why is this happening to me?”'),
       say(
-        'Maybe you lost something important. Maybe something you really wanted didn’t happen. Or maybe you went through a hard time and couldn’t understand why Allah allowed it.',
+        'All of us have had moments when life didn’t make sense. Something we wanted slipped away. Something we feared came true. And we asked, “Why is this happening to me?”',
       ),
-      say('We won’t always understand what happens to us. But the Qur’an tells us something important: tests are part of life.'),
+      say('Allah answers that question in a few simple words:'),
+      { type: 'recite', recitationId: 'dislike' },
     ],
   },
   {
-    id: 'baqarah',
-    title: 'Qur’an: Al-Baqarah 2:155–157',
-    part: 'First Khutbah',
-    blocks: [{ type: 'recite', recitationId: 'baqarah' }],
-  },
-  {
-    id: 'tests',
-    title: 'A test is not a punishment',
+    id: 'allah-knows',
+    title: 'Allah knows, and we do not',
     part: 'First Khutbah',
     blocks: [
       say(
-        'Allah tells us we will be tested with fear, hunger, and loss. But look at what follows: He praises those who are patient and promises them blessings and mercy.',
+        'Think about how much is in that one verse. The thing that hurt us might be protecting us. The thing we chased might have harmed us. We see one moment. Allah sees everything.',
       ),
       say(
-        'So a hardship is not a sign that Allah is punishing you. It may be a test. It may be a chance to grow in patience, or a way back to Allah. And sometimes we simply don’t know the reason yet.',
+        'Maybe it was a job you didn’t get, a door that closed, or a plan that fell apart. In that moment it felt like loss. But how many of us have looked back years later and said, “Alhamdulillah that didn’t happen”?',
+      ),
+      say(
+        'So when something hard happens, it isn’t a sign that Allah has forgotten you. It may be a test, a lesson, or a door to something better that you can’t see yet. And sometimes we simply won’t know the reason in this life.',
       ),
       PAUSE,
     ],
   },
   {
     id: 'yusuf',
-    title: 'The story of Prophet Yusuf',
+    title: 'Prophet Yusuf: patience is never wasted',
     part: 'First Khutbah',
     blocks: [
-      say('Think of Prophet Yusuf, peace be upon him.'),
+      say('Look at the story of Prophet Yusuf, peace be upon him.'),
       say(
-        'When he was young, his own brothers grew jealous of him and threw him into a well. He was taken to Egypt, far from his family, and faced more hardship there. Later he was put in prison, even though he was innocent.',
+        'His brothers were jealous of him and threw him into a well. He was taken to Egypt, far from his family. Then he was sent to prison for something he did not do.',
       ),
-      say('Imagine living through all of that.'),
       say(
-        'But his story didn’t end there. By Allah’s will, Yusuf became a man of authority in Egypt, and years later he was reunited with his family.',
+        'His father, Prophet Yaqub, peace be upon him, lost his beloved son for years. Yet his answer, which Allah records in the Qur’an, was: “So patience is most fitting.”',
       ),
-      say('In the well, and in the prison, Yusuf couldn’t see how his story would end. But Allah could.'),
       say(
-        'The lesson is not that every hardship ends in wealth or power. The lesson is that one hard chapter is not the whole story.',
+        'At every step, it looked like loss. But by Allah’s will, Yusuf rose to a position of authority in Egypt, and one day his brothers came and stood in front of him, needing his help.',
       ),
-      say('So when you face a difficulty, don’t treat it as the end. Stay patient, keep doing what is right, and hold on to Allah.'),
+      say('When they finally recognised him, Yusuf didn’t talk about his pain. He said:'),
+      { type: 'recite', recitationId: 'yusuf-words' },
+      say('A well, slavery, years in prison, and that was his conclusion: with Allah, patience is never wasted.'),
       PAUSE,
     ],
   },
   {
     id: 'car',
-    title: 'A personal story: the car crash',
+    title: 'A personal story',
     part: 'First Khutbah',
     blocks: [
-      say('Let me share something that happened to my own family.'),
+      say('Let me share something from my own family.'),
       say(
-        'Some time ago, an elderly lady accidentally crashed into our car, and it was completely totaled. We were upset and frustrated. It felt like a setback out of nowhere, and we couldn’t understand why it had happened to us.',
+        'Some time ago, an elderly lady accidentally crashed into our car, and it was completely totaled. We were upset and frustrated, and we couldn’t understand why it had happened to us.',
       ),
       say(
-        'But the insurance company covered everything, and the payout was enough to buy the brand-new version of our old car — the exact upgraded model we had been hoping for, even before the crash.',
+        'But the insurance company covered everything, and the money was enough to buy the brand-new version of our old car — the exact upgraded model we had been hoping for, even before the crash.',
       ),
-      say('On the day of the crash, all we could see was loss, damage, and stress. In the end, things turned out very differently than we expected.'),
+      say('On the day of the crash, all we saw was loss. Later, we saw something we never expected.'),
       say(
-        'I’m not saying every loss turns into something better in this life, or that we will always find out the reason. But it taught us that the first moment of a hardship rarely shows the full picture.',
+        'I’m not saying every loss turns into a gain in this life. Sometimes we never learn the reason. But that day reminded us that we only ever see a small part of the picture.',
       ),
-      say('Sometimes the wisdom becomes clear later. Sometimes it never does. Either way, our trust in Allah doesn’t have to change.'),
       PAUSE,
     ],
   },
   {
-    id: 'talaq',
-    title: 'Qur’an: At-Talaq 65:2–3',
-    part: 'First Khutbah',
-    blocks: [say('And being tested never means being abandoned. Allah says:'), { type: 'recite', recitationId: 'talaq' }],
-  },
-  {
-    id: 'way-out',
-    title: 'Allah makes a way out',
+    id: 'ease',
+    title: 'With hardship comes ease',
     part: 'First Khutbah',
     blocks: [
-      say('Think about that. You may look at your situation and say, “I don’t see a way out.” But Allah sees what you cannot.'),
-      say('You may say, “I don’t know what to do.” But He knows.'),
+      say('And Allah gives us a promise that every one of us can hold on to:'),
+      { type: 'recite', recitationId: 'ease' },
+      say('Allah says it twice, so that we never doubt it. And notice the word “with”: the ease comes with the hardship, not only after it.'),
       say(
         'The Prophet Muhammad, peace and blessings be upon him, said that the affair of the believer is amazing, because all of it is good. If something good happens, he is grateful, and that is good for him. If something hard happens, he is patient, and that is also good for him.',
       ),
-      say(
-        'So in ease, we give thanks. In hardship, we stay patient and turn to Allah. Hardship is never easy, but the way we respond to it can earn us reward.',
-      ),
+      say('So in good times, we say alhamdulillah. In hard times, we stay patient. Either way, the believer comes out ahead.'),
       PAUSE,
     ],
   },
   {
-    id: 'who-allah-is',
-    title: 'Remember who Allah is',
+    id: 'trust',
+    title: 'Trust the One who knows',
     part: 'First Khutbah',
     blocks: [
       say(
-        'We don’t need to understand everything that happens in order to trust Allah. We only need to remember who He is. He knows what we don’t know. He sees what we can’t see. And He knows the beginning, the middle, and the end of our story.',
+        'My brothers and sisters, we don’t need to understand everything in order to trust Allah. We only need to remember who He is. He knows what we don’t know. He sees what we can’t see. And He knows how our story ends.',
       ),
       PAUSE,
       { type: 'cue', cue: 'sit' },
@@ -155,25 +144,21 @@ export const SECTIONS: SectionInput[] = [
     ],
   },
   {
-    id: 'lessons',
-    title: 'Three lessons to take home',
+    id: 'reminders',
+    title: 'Three things to remember',
     part: 'Second Khutbah',
     blocks: [
-      say('My brothers and sisters, let us take three lessons home with us today.'),
-      say('First: tests are part of life. Losses and difficulties will come, often without warning.'),
-      say('Second: hardship does not mean Allah has left us. He has promised a way out to those who are mindful of Him.'),
+      say('My brothers and sisters, let us take three simple reminders home with us today.'),
+      say('One: what you dislike may be good for you. Allah knows, and we do not.'),
+      say('Two: patience is never wasted. Allah does not let the reward of those who do good be lost. And He is with you while you are patient:'),
+      { type: 'recite', recitationId: 'patient' },
+      say('Three: with hardship comes ease. Allah promised it twice.'),
       say(
-        'Third: true sabr is not giving up or feeling helpless. It is keeping your heart attached to Allah while you keep working, keep making du‘a, and keep doing what is right.',
+        'And when a hardship comes, here is what we can do: say “inna lillahi wa inna ilayhi raji‘un,” turn to Allah in du‘a, keep doing what is right, and be patient. That is what Allah asks of us. The outcome is in His hands.',
       ),
-    ],
-  },
-  {
-    id: 'allah-knows',
-    title: '“Allah knows what I don’t know”',
-    part: 'Second Khutbah',
-    blocks: [
-      say('So the next time life doesn’t go according to plan, before you ask, “Why me?”, remind yourself: “Allah knows what I don’t know.”'),
-      say('Be patient through the test, and trust Him even when you can’t see the way forward.'),
+      say(
+        'So the next time life doesn’t go according to plan, before you ask, “Why me?”, remind yourself: “Allah knows what I don’t know.”',
+      ),
       PAUSE,
     ],
   },

@@ -86,53 +86,68 @@ export const RECITATIONS: Record<string, Recitation> = {
     ],
   },
 
-  baqarah: {
-    id: 'baqarah',
-    title: 'Surah Al-Baqarah 2:155–157',
+  dislike: {
+    id: 'dislike',
+    title: 'Surah Al-Baqarah 2:216',
     readTranslationAloud: true,
     segments: [
       quran(
-        '2:155',
-        'Wa lanabluwannakum bishay’im-minal-khawfi wal-joo‘i wa naqsim-minal-amwaali wal-anfusi wath-thamaraat. Wa bashshiris-saabireen.',
-        'And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits, but give good tidings to the patient,',
+        '2:216',
+        'Wa ‘asaa an takrahoo shay’aw-wa huwa khayrul-lakum, wa ‘asaa an tuhibboo shay’aw-wa huwa sharrul-lakum. Wallaahu ya‘lamu wa antum laa ta‘lamoon.',
+        'Perhaps you hate a thing and it is good for you; and perhaps you love a thing and it is bad for you. And Allah knows, while you know not.',
+        { fromWord: 6, indopakFromWord: 6 },
       ),
+    ],
+    sources: [
+      'Al-Baqarah 2:216 is shown from “وَعَسَىٰٓ” (“And perhaps”), the general lesson at the end of the verse.',
+      KFGQPC,
+      INDOPAK,
+      SAHEEH,
+    ],
+  },
+
+  'yusuf-words': {
+    id: 'yusuf-words',
+    title: 'Surah Yusuf 12:90',
+    readTranslationAloud: true,
+    segments: [
       quran(
-        '2:156',
-        'Alladheena idhaa asaabat-hum museebatun qaaloo innaa lillaahi wa innaa ilayhi raaji‘oon.',
-        'Who, when disaster strikes them, say, “Indeed we belong to Allah, and indeed to Him we will return.”',
+        '12:90',
+        'Innahu may-yattaqi wa yasbir fa innal-laaha laa yudee‘u ajral-muhsineen.',
+        'Indeed, he who fears Allah and is patient, then indeed, Allah does not allow to be lost the reward of those who do good.',
+        { fromWord: 13, indopakFromWord: 13 },
       ),
-      quran(
-        '2:157',
-        'Ulaa’ika ‘alayhim salawaatum-mir-rabbihim wa rahmah. Wa ulaa’ika humul-muhtadoon.',
-        'Those are the ones upon whom are blessings from their Lord and mercy. And it is those who are the [rightly] guided.',
-      ),
+    ],
+    sources: [
+      'Yusuf 12:90 is shown from “إِنَّهُۥ” (“Indeed”), Prophet Yusuf’s words to his brothers when they recognised him.',
+      KFGQPC,
+      INDOPAK,
+      SAHEEH,
+    ],
+  },
+
+  ease: {
+    id: 'ease',
+    title: 'Surah Ash-Sharh 94:5–6',
+    readTranslationAloud: true,
+    segments: [
+      quran('94:5', 'Fa inna ma‘al-‘usri yusraa.', 'For indeed, with hardship [will be] ease.'),
+      quran('94:6', 'Inna ma‘al-‘usri yusraa.', 'Indeed, with hardship [will be] ease.'),
     ],
     sources: [KFGQPC, INDOPAK, SAHEEH],
   },
 
-  talaq: {
-    id: 'talaq',
-    title: 'Surah At-Talaq 65:2–3',
+  patient: {
+    id: 'patient',
+    title: 'Surah Al-Baqarah 2:153',
     readTranslationAloud: true,
     segments: [
-      quran(
-        '65:2',
-        'Wa may-yattaqil-laaha yaj‘al lahu makhrajaa,',
-        'And whoever fears Allah - He will make for him a way out',
-        { fromWord: 24, indopakFromWord: 26 },
-      ),
-      quran(
-        '65:3',
-        'Wa yarzuqhu min haythu laa yahtasib. Wa may-yatawakkal ‘alal-laahi fahuwa hasbuh. Innal-laaha baalighu amrih. Qad ja‘alal-laahu likulli shay’in qadraa.',
-        'And will provide for him from where he does not expect. And whoever relies upon Allah - then He is sufficient for him. Indeed, Allah will accomplish His purpose. Allah has already set for everything a [decreed] extent.',
-      ),
+      quran('2:153', 'Innal-laaha ma‘as-saabireen.', 'Indeed, Allah is with the patient.', {
+        fromWord: 6,
+        indopakFromWord: 6,
+      }),
     ],
-    sources: [
-      KFGQPC,
-      INDOPAK,
-      SAHEEH,
-      'At-Talaq 65:2 is shown from “وَمَن يَتَّقِ ٱللَّهَ” (“And whoever fears Allah”), the sentence that continues into 65:3. The start of the verse is about divorce rulings and is not needed for this khutbah.',
-    ],
+    sources: ['Al-Baqarah 2:153 is shown from “إِنَّ ٱللَّهَ” (“Indeed, Allah”), the end of the verse.', KFGQPC, INDOPAK, SAHEEH],
   },
 
   'second-praise': {

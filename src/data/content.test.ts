@@ -17,8 +17,8 @@ const words = (s: string) =>
     .trim()
 
 describe('Qur’an text', () => {
-  it('contains the complete passages requested', () => {
-    for (const key of ['2:155', '2:156', '2:157', '65:2', '65:3']) {
+  it('contains every verse quoted in the khutbah', () => {
+    for (const key of ['2:216', '12:90', '94:5', '94:6', '2:153']) {
       expect(verses[key]?.arabic.length, key).toBeGreaterThan(10)
     }
   })
@@ -81,9 +81,9 @@ describe('Khutbah script', () => {
     }
   })
 
-  it('has all five Arabic passages inline, in delivery order', () => {
+  it('has every Arabic passage inline, in delivery order', () => {
     const order = BLOCKS.flatMap((b) => (b.type === 'arabic' ? [b.recitationId] : []))
-    expect(order).toEqual(['opening', 'baqarah', 'talaq', 'second-praise', 'closing-dua'])
+    expect(order).toEqual(['opening', 'dislike', 'yusuf-words', 'ease', 'second-praise', 'patient', 'closing-dua'])
     for (const id of order) expect(RECITATIONS[id]).toBeDefined()
   })
 
@@ -119,7 +119,7 @@ describe('Indo-Pak script', () => {
   // Orthographic differences between Uthmani and Indo-Pak spelling only.
   const NORMALISE: Record<string, string> = {
     'ٱ': '', 'ا': '', 'أ': '', 'إ': '', 'آ': '', 'ٲ': '', 'ء': '', 'ـ': '', 'ۥ': '', 'ۦ': '',
-    'ى': 'ي', 'ی': 'ي', 'ئ': 'ي', 'ٮ': 'ي', 'ؤ': 'و', 'ة': 'ه',
+    'ى': 'ي', 'ی': 'ي', 'ئ': 'ي', 'ٮ': 'ي', 'ؤ': 'و', 'ة': 'ه', 'ک': 'ك',
   }
   const letters = (s: string) =>
     [...s]

@@ -23,8 +23,7 @@ import re
 import sys
 import unicodedata
 
-VERSES = ['1:2', '2:155', '2:156', '2:157', '2:201', '3:102', '4:1', '7:126', '33:56',
-          '33:70', '33:71', '37:180', '37:181', '37:182', '65:2', '65:3']
+VERSES = ['1:2', '2:153', '2:201', '2:216', '12:90', '94:5', '94:6']
 
 # Quran.com tajweed classes shown in colour, grouped like Indo-Pak colour-coded mushafs.
 TAJWEED_GROUPS = {
@@ -44,7 +43,7 @@ TAJWEED_GROUPS = {
 # Indo-Pak spell differently but which are the same Qur'anic word.
 NORMALISE = {
     'ٱ': '', 'ا': '', 'أ': '', 'إ': '', 'آ': '', 'ٲ': '', 'ء': '', 'ـ': '', 'ۥ': '', 'ۦ': '',
-    'ى': 'ي', 'ی': 'ي', 'ئ': 'ي', 'ٮ': 'ي', 'ؤ': 'و', 'ة': 'ه',
+    'ى': 'ي', 'ی': 'ي', 'ئ': 'ي', 'ٮ': 'ي', 'ؤ': 'و', 'ة': 'ه', 'ک': 'ك',
 }
 
 
