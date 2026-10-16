@@ -15,13 +15,15 @@ const CUES: Record<CueKind, { icon: string; label: string }> = {
 interface Props {
   block: Block
   isCurrent: boolean
+  /** Already read: drawn faded so the current place stands out. */
+  isPast?: boolean
   ref: Ref<HTMLElement>
   settings: Settings
   onSelect: () => void
 }
 
-export function ScriptBlock({ block, isCurrent, ref, settings, onSelect }: Props) {
-  const current = isCurrent ? ' is-current' : ''
+export function ScriptBlock({ block, isCurrent, isPast, ref, settings, onSelect }: Props) {
+  const current = (isCurrent ? ' is-current' : '') + (isPast ? ' is-past' : '')
 
   switch (block.type) {
     case 'heading':

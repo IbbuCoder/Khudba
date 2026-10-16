@@ -5,7 +5,7 @@ import { BLOCKS, SECTIONS, type Block } from './script'
 export const ENGLISH_WPM = 130
 export const ARABIC_WPM = 60
 
-export const TARGET_MINUTES = 10
+export const TARGET_MINUTES = 9
 
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length
 
@@ -46,3 +46,15 @@ export function formatClock(totalSeconds: number) {
 }
 
 export const formatMinutes = (seconds: number) => (seconds < 45 ? '<1 min' : `${Math.round(seconds / 60)} min`)
+
+/** Estimated seconds from the start of the khutbah to the start of block `index`. */
+export const secondsBefore = (index: number) => BLOCK_SECONDS.slice(0, index).reduce((a, b) => a + b, 0)
+
+/** How far ahead (negative) or behind (positive) the speaker is, in seconds. */
+export const paceDelta = (elapsedSeconds: number, index: number) => elapsedSeconds - secondsBefore(index)
+
+export function paceLabel(delta: number): { text: string; tone: 'ok' | 'behind' | 'ahead' } {
+  if (Math.abs(delta) < 20) return { text: 'On pace', tone: 'ok' }
+  const amount = Math.abs(delta) >= 60 ? `${Math.round(Math.abs(delta) / 60)} min` : `${Math.round(Math.abs(delta) / 10) * 10}s`
+  return delta > 0 ? { text: `${amount} behind`, tone: 'behind' } : { text: `${amount} ahead`, tone: 'ahead' }
+}

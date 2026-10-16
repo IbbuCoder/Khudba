@@ -152,9 +152,9 @@ describe('Indo-Pak script', () => {
 })
 
 describe('Timing', () => {
-  it('keeps the whole khutbah close to the 10-minute target', () => {
+  it('keeps the whole khutbah close to the 9-minute target', () => {
     const minutes = TOTAL_SECONDS / 60
-    expect(minutes).toBeGreaterThan(9)
-    expect(minutes).toBeLessThan(11)
+    expect(minutes).toBeGreaterThan(8.5)
+    expect(minutes).toBeLessThan(9.5)
   })
 })

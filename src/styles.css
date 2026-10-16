@@ -462,8 +462,33 @@ button:disabled {
   font-size: 0.78rem;
 }
 
-.bottom-status.over-time .bottom-timer {
+.bottom-status.near-time .bottom-timer {
   color: var(--tj-qalqalah);
+}
+
+.bottom-status.over-time .bottom-timer {
+  color: var(--tj-ghunnah);
+}
+
+.pace {
+  font-weight: 700;
+}
+
+.pace-ok {
+  color: var(--green-text);
+}
+
+.pace-behind {
+  color: var(--tj-ghunnah);
+}
+
+.pace-ahead {
+  color: var(--tj-ikhfa);
+}
+
+/* Parts already read fade back, so the current place stands out. */
+.is-past {
+  opacity: 0.4;
 }
 
 .bottom-section {
@@ -921,6 +946,10 @@ button:disabled {
   .script {
     max-width: none;
     padding: 0;
+  }
+
+  .is-past {
+    opacity: 1;
   }
 
   .speech.is-current,

@@ -4,12 +4,14 @@ A private reading script for delivering the Friday khutbah **“Everything Has a
 
 ## Using it
 
-- **One continuous script** of about 10 minutes, in delivery order. The Arabic sits right in the script, so there are no separate pages to open.
+- **One continuous script** of about 9 minutes, in delivery order. The Arabic sits right in the script, so there are no separate pages to open.
 - **Read your English** as normal paragraphs. A green bar marks where you are, the top bar shows the section, and the thin line at the very top shows progress.
 - **📖 Recite in Arabic** blocks show the Arabic on a mushaf-style page (Indo-Pak script with tajweed colours), with the transliteration underneath. For Qur’an passages a **🇬🇧 Read the English** block follows.
 - **Boxed cues are never spoken:** ⏸️ Pause, 🪑 Sit briefly, 🧍 Stand up, 🤲 Make du‘a, 🏁 End of khutbah.
 - **Next / Previous** move one block at a time. If a block is taller than the screen, Next scrolls through it first, so nothing is skipped. Arrow keys, Space and Bluetooth page turners work too.
-- **⏱ Timer** in the bottom bar starts when you first press Next and shows the time left (estimated). Tap it to pause or resume. It turns orange after 10 minutes, keeps running if the page reloads, and resets from **Aa → Timer**.
+- **⏱ Timer and pace** in the bottom bar. The timer starts when you first press Next. It then shows **On pace**, **…ahead** or **…behind** for where you are in the script, measured against a 9-minute khutbah. It turns amber at 8:00 and red at 9:00. Tap it to pause; it keeps running if the page reloads, and resets from **Aa → Timer**.
+- **Faded lines:** the parts you have already read fade back, so your place is obvious at a glance (**Aa** to switch off).
+- **Tap to turn:** in **⛶ Present** mode, tap anywhere on the right of the script to go on, or the left third to go back.
 - **☰ Contents** jumps to any section and shows roughly how long each one takes.
 - **Paper backup:** **Aa → Print / save PDF** prints the whole script (Arabic included) without the buttons, in case your phone dies.
 - **Aa** sets text sizes, light or dark mode, Arabic style (Indo-Pak or Uthmani), tajweed colours and keep-screen-awake. **⛶ Present** hides the menus.

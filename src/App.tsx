@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { BLOCKS, KHUTBAH_TITLE, SECTIONS, SECTION_START, type Block } from './data/script'
 import { RECITATIONS } from './data/recitations'
 import { loadPosition, loadSettings, loadTimer, savePosition, saveSettings, saveTimer, type Settings, type TimerState } from './storage'
-import { formatClock, formatMinutes, secondsLeftFrom, TARGET_MINUTES } from './data/timing'
+import { formatClock, formatMinutes, paceDelta, paceLabel, secondsLeftFrom, TARGET_MINUTES } from './data/timing'
 import { useEffectiveTheme, useWakeLock } from './hooks'
 import { ScriptBlock } from './components/ScriptBlock'
 import { TocPanel } from './components/TocPanel'
@@ -222,6 +222,17 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [panel, presentation, goNext, goPrev, togglePresentation])
 
+  // Presentation mode: tap the script to turn the page. The left third goes back.
+  const onScriptTap = useCallback(
+    (e: React.MouseEvent) => {
+      if (!presentation || !settings.tapToAdvance) return
+      if ((e.target as HTMLElement).closest('button, a, summary, details, input')) return
+      if (e.clientX < window.innerWidth / 3) goPrev()
+      else goNext()
+    },
+    [presentation, settings.tapToAdvance, goNext, goPrev],
+  )
+
   const updateSettings = useCallback((patch: Partial<Settings>) => setSettings((s) => ({ ...s, ...patch })), [])
 
   const block: Block = BLOCKS[current]
@@ -229,7 +240,9 @@ export default function App() {
   const progress = BLOCKS.length > 1 ? current / (BLOCKS.length - 1) : 1
   const elapsedSec = (timer.elapsedMs + (timer.runningSince !== null ? Date.now() - timer.runningSince : 0)) / 1000
   const timerStarted = timer.runningSince !== null || timer.elapsedMs > 0
-  const overTime = elapsedSec > TARGET_MINUTES * 60
+  const overTime = elapsedSec >= TARGET_MINUTES * 60
+  const nearTime = !overTime && elapsedSec >= (TARGET_MINUTES - 1) * 60
+  const pace = timerStarted ? paceLabel(paceDelta(elapsedSec, current)) : null
   const leftSec = secondsLeftFrom(current)
   const atEnd = current >= BLOCKS.length - 1
 
@@ -260,18 +273,21 @@ export default function App() {
           </header>
         )}
 
-        <main className="script" aria-label="Khutbah script">
+        <main className="script" aria-label="Khutbah script" onClick={onScriptTap}>
           <h1 className="script-title">{KHUTBAH_TITLE}</h1>
           {BLOCKS.map((b) => (
             <ScriptBlock
               key={b.id}
               block={b}
               isCurrent={b.index === current}
+              isPast={settings.dimRead && b.index < current}
               ref={(el) => {
                 blockRefs.current[b.index] = el
               }}
               settings={settings}
-              onSelect={() => scrollToBlock(b.index, true)}
+              onSelect={() => {
+                if (!(presentation && settings.tapToAdvance)) scrollToBlock(b.index, true)
+              }}
             />
           ))}
           <details className="sources">
@@ -305,14 +321,22 @@ export default function App() {
             </button>
           )}
           <button
-            className={`bottom-status${overTime ? ' over-time' : ''}`}
+            className={`bottom-status${overTime ? ' over-time' : nearTime ? ' near-time' : ''}`}
             onClick={toggleTimer}
             aria-label={timer.runningSince !== null ? 'Pause timer' : 'Start timer'}
           >
             <span className="bottom-timer">
               {!timerStarted ? '⏱ Timer' : `${timer.runningSince === null ? '⏸' : '⏱'} ${formatClock(elapsedSec)}`}
             </span>
-            <span className="bottom-left">{leftSec > 0 ? `~${formatMinutes(leftSec)} left` : 'Done'}</span>
+            <span className="bottom-left">
+              {leftSec <= 0 ? (
+                'Done'
+              ) : pace ? (
+                <span className={`pace pace-${pace.tone}`}>{pace.text}</span>
+              ) : (
+                `~${formatMinutes(leftSec)} left`
+              )}
+            </span>
           </button>
           <button className="nav-btn primary" onClick={goNext} disabled={atEnd}>
             Next ›

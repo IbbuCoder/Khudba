@@ -117,6 +117,20 @@ export function SettingsPanel({ settings, onChange, onRestart, onResetTimer, onC
         {settings.script === 'indopak' ? getIndopakVerse('1:2').text : displayArabic(getVerse('1:2').arabic)}
       </p>
 
+      <label className="setting-row toggle">
+        <span className="setting-label">Fade what I’ve already read</span>
+        <input type="checkbox" checked={settings.dimRead} onChange={(e) => onChange({ dimRead: e.target.checked })} />
+      </label>
+
+      <label className="setting-row toggle">
+        <span className="setting-label">Tap script to turn (Present mode)</span>
+        <input
+          type="checkbox"
+          checked={settings.tapToAdvance}
+          onChange={(e) => onChange({ tapToAdvance: e.target.checked })}
+        />
+      </label>
+
       {wakeLockSupported() && (
         <label className="setting-row toggle">
           <span className="setting-label">Keep screen awake</span>
@@ -152,7 +166,7 @@ export function SettingsPanel({ settings, onChange, onRestart, onResetTimer, onC
       </div>
 
       <p className="setting-note">
-        The timer starts when you first press Next; tap it in the bottom bar to pause. Your place, timer and settings are saved on this device only, and the script works offline after the first visit.
+        The timer starts when you first press Next and shows whether you are on pace for 9 minutes; tap it to pause. In Present mode, tap the right of the screen to go on and the left third to go back. Your place, timer and settings are saved on this device only, and the script works offline after the first visit.
       </p>
     </Sheet>
   )

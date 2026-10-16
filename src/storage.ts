@@ -11,6 +11,10 @@ export interface Settings {
   script: ArabicScript
   /** Colour tajweed rules in the Indo-Pak script. */
   tajweed: boolean
+  /** Fade the parts of the script that have already been read. */
+  dimRead: boolean
+  /** In presentation mode, tap the script to go to the next block. */
+  tapToAdvance: boolean
   keepAwake: boolean
 }
 
@@ -27,6 +31,8 @@ export const DEFAULT_SETTINGS: Settings = {
   arabicScale: 1,
   script: 'indopak',
   tajweed: true,
+  dimRead: true,
+  tapToAdvance: true,
   keepAwake: true,
 }
 
@@ -64,6 +70,8 @@ export function loadSettings(): Settings {
     arabicScale: clamp(s.arabicScale, ARABIC_SCALE, DEFAULT_SETTINGS.arabicScale),
     script: s.script === 'uthmani' || s.script === 'indopak' ? s.script : DEFAULT_SETTINGS.script,
     tajweed: typeof s.tajweed === 'boolean' ? s.tajweed : DEFAULT_SETTINGS.tajweed,
+    dimRead: typeof s.dimRead === 'boolean' ? s.dimRead : DEFAULT_SETTINGS.dimRead,
+    tapToAdvance: typeof s.tapToAdvance === 'boolean' ? s.tapToAdvance : DEFAULT_SETTINGS.tapToAdvance,
     keepAwake: typeof s.keepAwake === 'boolean' ? s.keepAwake : DEFAULT_SETTINGS.keepAwake,
   }
 }
