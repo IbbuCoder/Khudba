@@ -22,12 +22,9 @@ export interface Recitation {
   id: string
   /** Big label on the card and the recitation screen. */
   title: string
-  subtitle: string
   optional?: boolean
   /** Qur'an passages: the script says to read the English translation aloud. */
   readTranslationAloud: boolean
-  /** One-line instruction shown before the Arabic. */
-  instruction: string
   segments: Segment[]
   sources: string[]
 }
@@ -71,9 +68,7 @@ export const RECITATIONS: Record<string, Recitation> = {
   opening: {
     id: 'opening',
     title: 'Khutbah Opening',
-    subtitle: 'Khuṭbat al-Ḥājah — opening of the first khutbah',
     readTranslationAloud: false,
-    instruction: 'Recite the Arabic opening. The English meaning below is for your reference only.',
     segments: [
       {
         kind: 'hadith',
@@ -125,9 +120,7 @@ export const RECITATIONS: Record<string, Recitation> = {
   baqarah: {
     id: 'baqarah',
     title: 'Surah Al-Baqarah 2:155–157',
-    subtitle: 'Tests are part of life — glad tidings for the patient',
     readTranslationAloud: true,
-    instruction: 'Recite the Arabic, then read the English translation aloud.',
     segments: [
       quran(
         '2:155',
@@ -151,9 +144,7 @@ export const RECITATIONS: Record<string, Recitation> = {
   talaq: {
     id: 'talaq',
     title: 'Surah At-Talaq 65:2–3',
-    subtitle: 'Whoever is mindful of Allah — He will make a way out',
     readTranslationAloud: true,
-    instruction: 'Recite the Arabic, then read the English translation aloud.',
     segments: [
       quran(
         '65:2',
@@ -177,9 +168,7 @@ export const RECITATIONS: Record<string, Recitation> = {
   'second-praise': {
     id: 'second-praise',
     title: 'Praise of Allah & Salawat',
-    subtitle: 'Opening of the second khutbah',
     readTranslationAloud: false,
-    instruction: 'Recite the Arabic praise and salawat. The English meaning below is for your reference only.',
     segments: [
       quran('1:2', 'Al-hamdu lillaahi rabbil-‘aalameen.', '[All] praise is [due] to Allah, Lord of the worlds.'),
       quran(
@@ -209,10 +198,8 @@ export const RECITATIONS: Record<string, Recitation> = {
   'closing-dua': {
     id: 'closing-dua',
     title: 'Arabic Closing Du‘a',
-    subtitle: 'Optional — Qur’anic du‘as',
     optional: true,
     readTranslationAloud: false,
-    instruction: 'Optional. Recite any of these Qur’anic du‘as in Arabic, or skip this page.',
     segments: [
       quran(
         '7:126',

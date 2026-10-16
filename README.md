@@ -5,9 +5,9 @@ A private reading script for delivering the Friday khutbah **“Everything Has a
 ## Using it
 
 - **Read the English** as normal paragraphs. The paragraph you are on is marked with a green bar; the top bar shows the current section and the thin line at the very top shows progress.
-- **Boxed cues are never spoken.** ⏸️ PAUSE, 🪑 SIT BRIEFLY, 🧍 STAND, 🤲 ENGLISH DU‘A, 🏁 END and 📚 reference notes are private instructions.
+- **Boxed cues are never spoken.** ⏸️ PAUSE, 🪑 SIT BRIEFLY, 🧍 STAND UP, 🤲 MAKE DU‘A and 🏁 END are private instructions.
 - **Arabic style:** the Arabic pages use the Indo-Pak script on a ruled, framed mushaf-style page, with tajweed colours by default. Go to **Aa → Arabic style** to switch to the Uthmani (Madani) script, or **Aa → Tajweed colours** to turn the colours off.
-- **Arabic recitation:** when you reach a green 📖 RECITE ARABIC card, press **Open Arabic** (or the card’s button). The Arabic page shows the Arabic, the transliteration under each verse, then the 🇬🇧 English translation. Nothing advances on its own. Press **↩️ Return to khutbah** to go to the exact next paragraph. Press **← Khutbah** in the top corner to go back to the card instead.
+- **Arabic recitation:** when you reach a green 📖 RECITE ARABIC card, press **Open Arabic** (or the card’s button). The Arabic page has three plain steps: **1 · Recite the Arabic** (one mushaf page, with the transliteration below it), **2 · Read the English** (Qur’an passages only), then **↩️ Back to khutbah**. Nothing advances on its own. Press **↩️ Return to khutbah** to go to the exact next paragraph. Press **← Khutbah** in the top corner to go back to the card instead.
 - **Previous / Next** step one block at a time. Arrow keys, Space, Page Up/Down and most Bluetooth page turners also work.
 - **☰ Contents** jumps to any section. **Aa** changes text size (English and Arabic separately), theme (light, dark or device) and keeps the screen awake. **⛶ Present** hides the menus. Press ✕ in the bottom bar to leave presentation mode.
 - Your place and settings are **saved on the device**. If the page reloads, it reopens where you were, even on the Arabic page.
@@ -25,7 +25,7 @@ A private reading script for delivering the Friday khutbah **“Everything Has a
 | Khutbah opening | Khuṭbat al-Ḥājah, narrated by ʿAbdullāh ibn Masʿūd. Sources: Sunan Abī Dāwūd 2118 and Sunan al-Nasāʾī 3278. Recited with 3:102, 4:1 and 33:70–71. |
 | Salawat (second khutbah) | Al-ṣalāh al-Ibrāhīmiyyah, narrated by Kaʿb ibn ʿUjrah. Sources: Ṣaḥīḥ al-Bukhārī 3370 and Ṣaḥīḥ Muslim 406. Preceded by 1:2 and 33:56. |
 | Optional Arabic du‘a | 7:126 and 2:201, each from “رَبَّنَآ”, then 37:180–182 |
-| Hadith of the believer’s affairs | Ṣaḥīḥ Muslim 2999, narrated by Ṣuhayb. It appears as a private reference note under the paraphrase. |
+| Hadith of the believer’s affairs | Ṣaḥīḥ Muslim 2999, narrated by Ṣuhayb. The khutbah paraphrases it in plain English. |
 | Transliterations | Simplified, readable transliterations written for this script |
 
 Safeguards (enforced by `npm test`):

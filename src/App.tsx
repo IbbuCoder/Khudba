@@ -15,15 +15,6 @@ const READING_GAP = 20
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-/** The first spoken paragraph after a block, used to preview what comes next. */
-function nextSpokenText(fromIndex: number): string | undefined {
-  for (let i = fromIndex + 1; i < BLOCKS.length; i++) {
-    const b = BLOCKS[i]
-    if (b.type === 'para') return b.text
-  }
-  return undefined
-}
-
 export default function App() {
   const [settings, setSettings] = useState<Settings>(loadSettings)
   const [saved] = useState(loadPosition)
@@ -230,7 +221,6 @@ export default function App() {
       {recitation && reciteIndex !== null && (
         <RecitationScreen
           recitation={recitation}
-          nextText={nextSpokenText(reciteIndex)}
           theme={theme}
           settings={settings}
           onSettings={updateSettings}
@@ -265,10 +255,6 @@ export default function App() {
 
         <main className="script" aria-label="Khutbah script">
           <h1 className="script-title">{KHUTBAH_TITLE}</h1>
-          <p className="legend">
-            Plain text is spoken. <span className="legend-cue">Boxed cues</span> are private instructions — never read
-            them aloud.
-          </p>
           {BLOCKS.map((b) => (
             <ScriptBlock
               key={b.id}

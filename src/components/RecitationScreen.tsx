@@ -1,12 +1,11 @@
-import { useEffect, useRef } from 'react'
-import type { Recitation } from '../data/recitations'
+import { Fragment, useEffect, useRef } from 'react'
+import type { Recitation, Segment } from '../data/recitations'
 import { displayArabic, toArabicDigits } from '../data/quran'
-import { joinRuns, TAJWEED_LEGEND, toUrduDigits, type Run } from '../data/indopak'
+import { joinRuns, runsText, toUrduDigits, type Run } from '../data/indopak'
 import { ARABIC_SCALE, type Settings } from '../storage'
 
 interface Props {
   recitation: Recitation
-  nextText?: string
   theme: 'light' | 'dark'
   settings: Settings
   onSettings: (patch: Partial<Settings>) => void
@@ -16,12 +15,9 @@ interface Props {
 
 const round = (n: number) => Math.round(n * 10) / 10
 
-function preview(text: string, max = 110) {
-  return text.length > max ? `${text.slice(0, text.lastIndexOf(' ', max))}…` : text
-}
-
-export function RecitationScreen({ recitation, nextText, theme, settings, onSettings, onReturn }: Props) {
+export function RecitationScreen({ recitation, theme, settings, onSettings, onReturn }: Props) {
   const headingRef = useRef<HTMLHeadingElement>(null)
+  const indopak = settings.script === 'indopak'
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true })
@@ -48,20 +44,29 @@ export function RecitationScreen({ recitation, nextText, theme, settings, onSett
     return () => window.removeEventListener('keydown', onKey)
   }, [onReturn])
 
-  const indopak = settings.script === 'indopak'
-
   const setArabic = (delta: number) =>
     onSettings({
       arabicScale: round(Math.min(ARABIC_SCALE.max, Math.max(ARABIC_SCALE.min, settings.arabicScale + delta))),
     })
 
+  const translations = (
+    <div className={recitation.readTranslationAloud ? 'translations aloud' : 'translations'}>
+      {recitation.segments.map((s, i) => (
+        <p className="translation" key={i}>
+          {s.ayahMarker !== undefined && <span className="verse-num">{s.ayahMarker}</span>}
+          {s.translation}
+        </p>
+      ))}
+    </div>
+  )
+
   return (
     <div className="recitation">
       <header className="recitation-bar">
-        <button className="icon-btn" onClick={() => onReturn(false)} aria-label="Back to the khutbah without advancing">
-          ← <span className="btn-text">Khutbah</span>
+        <button className="icon-btn" onClick={() => onReturn(false)} aria-label="Back to the khutbah">
+          ← <span className="btn-text">Back</span>
         </button>
-        <div className="recitation-bar-title">📖 Recite Arabic</div>
+        <div className="recitation-bar-spacer" />
         <button
           className="icon-btn"
           onClick={() => setArabic(-ARABIC_SCALE.step)}
@@ -92,77 +97,48 @@ export function RecitationScreen({ recitation, nextText, theme, settings, onSett
           {recitation.title}
           {recitation.optional && <span className="optional-tag">Optional</span>}
         </h1>
-        <p className="recitation-subtitle">{recitation.subtitle}</p>
 
-        <div className="step-banner step-recite">
-          <span aria-hidden>📖</span> Recite Arabic
+        <h2 className="step">
+          <span className="step-num">1</span> Recite the Arabic
+        </h2>
+
+        <div className={indopak ? 'mushaf' : 'mushaf plain'}>
+          <p className={indopak ? 'arabic indopak' : 'arabic'} dir="rtl" lang="ar">
+            {recitation.segments.map((s, i) => (
+              <Fragment key={i}>
+                {i > 0 && ' '}
+                <ArabicSegment segment={s} indopak={indopak} tajweed={settings.tajweed} />
+              </Fragment>
+            ))}
+          </p>
         </div>
-        <p className="step-hint">{recitation.instruction}</p>
 
-        {indopak && settings.tajweed && <TajweedLegend />}
-
-        {recitation.segments.map((s, i) => (
-          <div className="segment" key={i}>
-            <div className="segment-ref">{s.ref}</div>
-            {indopak ? (
-              <div className="mushaf">
-                <p className="arabic indopak" dir="rtl" lang="ar">
-                  {s.indopak ? <TajweedText runs={s.indopak} colour={settings.tajweed} /> : s.arabic}
-                  {s.ayahMarker !== undefined && (
-                    <span className="ayah-mark" aria-label={`end of verse ${s.ayahMarker}`}>
-                      {' '}
-                      {'\u06DD' + toUrduDigits(s.ayahMarker)}
-                    </span>
-                  )}
-                </p>
-              </div>
-            ) : (
-              <p className="arabic" dir="rtl" lang="ar">
-                {s.kind === 'quran' ? displayArabic(s.arabic) : s.arabic}
-                {s.ayahMarker !== undefined && (
-                  <span className="ayah-mark" aria-label={`end of verse ${s.ayahMarker}`}>
-                    {' '}
-                    ﴿{toArabicDigits(s.ayahMarker)}﴾
-                  </span>
-                )}
-              </p>
-            )}
-            <p className="translit" lang="ar-Latn">
-              {s.transliteration}
-            </p>
-          </div>
-        ))}
-
-        {recitation.readTranslationAloud ? (
-          <div className="step-banner step-translate">
-            <span aria-hidden>🇬🇧</span> Read English translation
-          </div>
-        ) : (
-          <div className="step-banner step-meaning">
-            <span aria-hidden>🔎</span> English meaning — for your reference
-          </div>
-        )}
-        {!recitation.readTranslationAloud && <p className="step-hint">Not part of the script — no need to read this aloud.</p>}
-
-        <div className={recitation.readTranslationAloud ? 'translations aloud' : 'translations'}>
+        <div className="translit-block" lang="ar-Latn">
           {recitation.segments.map((s, i) => (
-            <p className="translation" key={i}>
-              <span className="translation-ref">{s.ref}</span>
-              {s.translation}
+            <p className="translit" key={i}>
+              {s.ayahMarker !== undefined && <span className="verse-num">{s.ayahMarker}</span>}
+              {s.transliteration}
             </p>
           ))}
         </div>
 
-        <div className="return-block">
-          <button className="return-btn" onClick={() => onReturn(true)}>
-            <span aria-hidden>↩️</span> Return to khutbah
-          </button>
-          {nextText && (
-            <p className="next-preview">
-              <span>Next you say:</span> “{preview(nextText)}”
-            </p>
-          )}
-        </div>
+        {recitation.readTranslationAloud ? (
+          <>
+            <h2 className="step">
+              <span className="step-num">2</span> Read the English
+            </h2>
+            {translations}
+          </>
+        ) : (
+          <details className="meaning">
+            <summary>Show the English meaning (not read aloud)</summary>
+            {translations}
+          </details>
+        )}
+
+        <button className="return-btn" onClick={() => onReturn(true)}>
+          ↩️ Back to khutbah
+        </button>
 
         <details className="sources">
           <summary>Sources</summary>
@@ -177,8 +153,31 @@ export function RecitationScreen({ recitation, nextText, theme, settings, onSett
   )
 }
 
+function ArabicSegment({ segment: s, indopak, tajweed }: { segment: Segment; indopak: boolean; tajweed: boolean }) {
+  const marker =
+    s.ayahMarker === undefined ? null : (
+      <span className="ayah-mark" aria-label={`end of verse ${s.ayahMarker}`}>
+        {' '}
+        {indopak ? '۝' + toUrduDigits(s.ayahMarker) : `﴿${toArabicDigits(s.ayahMarker)}﴾`}
+      </span>
+    )
+  const text = !indopak ? (
+    s.kind === 'quran' ? displayArabic(s.arabic) : s.arabic
+  ) : s.indopak ? (
+    <TajweedText runs={s.indopak} colour={tajweed} />
+  ) : (
+    s.arabic
+  )
+  return (
+    <>
+      {text}
+      {marker}
+    </>
+  )
+}
+
 function TajweedText({ runs, colour }: { runs: Run[]; colour: boolean }) {
-  if (!colour) return <>{runs.map(([t]) => t).join('')}</>
+  if (!colour) return <>{runsText(runs)}</>
   return (
     <>
       {joinRuns(runs).map(([t, rule], i) =>
@@ -187,22 +186,9 @@ function TajweedText({ runs, colour }: { runs: Run[]; colour: boolean }) {
             {t}
           </span>
         ) : (
-          t
+          <Fragment key={i}>{t}</Fragment>
         ),
       )}
     </>
-  )
-}
-
-function TajweedLegend() {
-  return (
-    <div className="tajweed-legend" aria-label="Tajweed colour key">
-      {TAJWEED_LEGEND.map(({ rule, label }) => (
-        <span key={rule} className={`legend-item tj-${rule}`}>
-          <span className="legend-dot" aria-hidden />
-          {label}
-        </span>
-      ))}
-    </div>
   )
 }

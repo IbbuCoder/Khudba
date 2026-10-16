@@ -223,19 +223,6 @@ button:disabled {
   color: var(--green-text);
 }
 
-.legend {
-  margin: 0 0 1.4em;
-  font-size: 0.62em;
-  color: var(--muted);
-}
-
-.legend-cue {
-  padding: 1px 6px;
-  border: 1.5px dashed var(--cue-border);
-  border-radius: 6px;
-  background: var(--cue-bg);
-}
-
 /* Every block keeps a left rail so the current marker doesn't shift text. */
 .speech,
 .part-heading,
@@ -290,13 +277,20 @@ button:disabled {
 /* ---------- Cues (private instructions — never spoken) ---------- */
 
 .cue {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
   margin: 0.4em 0 1.1em;
-  padding: 10px 14px;
+  padding: 8px 16px;
   border: 2px dashed var(--cue-border);
-  border-radius: 12px;
+  border-radius: 999px;
   background: var(--cue-bg);
   font-size: 0.72em;
-  line-height: 1.45;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-text);
 }
 
 .cue.is-current {
@@ -304,52 +298,31 @@ button:disabled {
   border-color: var(--green-text);
 }
 
-.cue-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--green-text);
-}
-
 .cue-icon {
   font-size: 1.3em;
   letter-spacing: 0;
 }
 
-.cue-detail {
-  margin-top: 4px;
-  color: var(--muted);
-}
-
-.cue-pause {
-  width: fit-content;
-  padding: 6px 14px;
-}
-
-.cue-note .cue-detail {
-  font-style: italic;
-}
-
 .cue-sit,
 .cue-stand,
 .cue-end {
+  width: auto;
+  justify-content: center;
+  padding: 14px 16px;
+  border-radius: 14px;
   font-size: 0.85em;
-  padding: 16px;
 }
 
-/* ---------- Recitation card ---------- */
+/* ---------- Arabic card in the script ---------- */
 
 .recite-card {
   margin: 0.6em 0 1.3em;
-  padding: 16px;
+  padding: 14px 16px 16px;
   border: 2px solid var(--green);
   border-radius: 16px;
   background: var(--green-soft);
   font-size: 0.75em;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .recite-card.is-current {
@@ -358,6 +331,13 @@ button:disabled {
 
 .recite-card.optional {
   border-style: dashed;
+}
+
+.recite-label {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-text);
 }
 
 .optional-tag {
@@ -373,23 +353,9 @@ button:disabled {
 }
 
 .recite-title {
-  margin: 8px 0 2px;
+  margin: 4px 0 12px;
   font-size: 1.3em;
   line-height: 1.25;
-}
-
-.recite-subtitle {
-  margin: 0 0 8px;
-  color: var(--muted);
-}
-
-.recite-steps {
-  margin: 0 0 14px;
-  padding-left: 1.4em;
-}
-
-.recite-steps li {
-  margin: 2px 0;
 }
 
 .open-recitation {
@@ -481,10 +447,6 @@ button:disabled {
 
 .presenting .bottombar {
   border-top-color: transparent;
-}
-
-.presenting .legend {
-  display: none;
 }
 
 .exit-presentation {
@@ -730,18 +692,8 @@ button:disabled {
   border-bottom: 1px solid var(--border);
 }
 
-.recitation-bar-title {
+.recitation-bar-spacer {
   flex: 1;
-  min-width: 0;
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--green-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .recitation-body {
@@ -751,79 +703,40 @@ button:disabled {
 }
 
 .recitation-title {
-  margin: 6px 0 2px;
+  margin: 4px 0 6px;
   font-size: 1.5rem;
   line-height: 1.25;
   outline: none;
 }
 
-.recitation-subtitle {
-  margin: 0 0 18px;
-  color: var(--muted);
-}
-
-.step-banner {
+.step {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 26px 0 6px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  margin: 22px 0 10px;
+  font-size: 1.15rem;
+  color: var(--green-text);
 }
 
-.step-banner span {
-  font-size: 1.3em;
-  letter-spacing: 0;
-}
-
-.step-recite,
-.step-translate {
+.step-num {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   background: var(--green);
   color: var(--on-green);
-}
-
-.step-meaning {
-  border: 2px dashed var(--cue-border);
-  background: var(--cue-bg);
-  color: var(--green-text);
-}
-
-.step-hint {
-  margin: 0 0 10px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.segment {
-  padding: 14px 0 18px;
-  border-bottom: 1px solid var(--border);
-}
-
-.segment:last-of-type {
-  border-bottom: 0;
-}
-
-.segment-ref,
-.translation-ref {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--green-text);
+  font-size: 1rem;
 }
 
 .arabic {
-  margin: 6px 0 10px;
+  margin: 0;
   font-family: var(--font-arabic);
   font-size: calc(2.15rem * var(--arabic-scale));
   line-height: 2.15;
   text-align: right;
   word-spacing: 0.08em;
   color: var(--text);
-  font-feature-settings: 'kern', 'liga', 'calt';
 }
 
 @media (min-width: 768px) {
@@ -837,20 +750,35 @@ button:disabled {
   white-space: nowrap;
 }
 
+.translit-block {
+  margin-top: 12px;
+}
+
 .translit {
-  margin: 0;
-  font-size: calc(1.15rem * var(--text-scale));
+  margin: 0 0 8px;
+  font-size: calc(1.1rem * var(--text-scale));
   line-height: 1.55;
   font-style: italic;
   color: var(--muted);
 }
 
-.translations {
-  margin-top: 6px;
+.verse-num {
+  display: inline-block;
+  min-width: 2.2em;
+  margin-right: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: var(--green-text);
+  font-size: 0.75em;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: 0.15em;
 }
 
 .translation {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   font-size: calc(1.1rem * var(--text-scale));
   line-height: 1.6;
   color: var(--muted);
@@ -861,36 +789,30 @@ button:disabled {
   color: var(--text);
 }
 
-.translation-ref {
-  display: block;
+.meaning {
+  margin-top: 18px;
+  color: var(--muted);
 }
 
-.return-block {
-  margin: 30px 0 18px;
+.meaning summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--green-text);
 }
 
 .return-btn {
   width: 100%;
   min-height: 60px;
+  margin: 28px 0 8px;
   border: 0;
   border-radius: 14px;
   background: var(--green);
   color: var(--on-green);
   font-size: 1.2rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.next-preview {
-  margin: 12px 0 0;
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-
-.next-preview span {
-  font-weight: 700;
-  color: var(--text);
 }
 
 .sources {
@@ -919,6 +841,12 @@ button:disabled {
   border: 4px double var(--page-frame);
   border-radius: 6px;
   background: var(--page);
+}
+
+.mushaf.plain {
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .arabic.indopak {
@@ -967,7 +895,7 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 14px;
-  margin: 4px 0 6px;
+  margin: 2px 0 8px;
   font-size: 0.8rem;
   font-weight: 700;
 }

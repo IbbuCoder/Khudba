@@ -2,13 +2,12 @@ import type { Ref } from 'react'
 import type { Block, CueKind } from '../data/script'
 import { RECITATIONS } from '../data/recitations'
 
-const CUES: Record<CueKind, { icon: string; label: string; detail?: string }> = {
+const CUES: Record<CueKind, { icon: string; label: string }> = {
   pause: { icon: '⏸️', label: 'Pause' },
-  sit: { icon: '🪑', label: 'Sit briefly', detail: 'Sit before the second khutbah. Press Next when you stand.' },
-  stand: { icon: '🧍', label: 'Stand', detail: 'Stand for the second khutbah.' },
-  dua: { icon: '🤲', label: 'English du‘a', detail: 'Read the du‘a below in English.' },
-  end: { icon: '🏁', label: 'End the khutbah' },
-  note: { icon: '📚', label: 'Reference — do not read aloud' },
+  sit: { icon: '🪑', label: 'Sit briefly' },
+  stand: { icon: '🧍', label: 'Stand up' },
+  dua: { icon: '🤲', label: 'Make du‘a' },
+  end: { icon: '🏁', label: 'End of khutbah' },
 }
 
 interface Props {
@@ -51,13 +50,10 @@ export function ScriptBlock({ block, isCurrent, ref, onSelect, onOpenRecitation 
           aria-label={`Instruction, not spoken: ${cue.label}`}
           onClick={onSelect}
         >
-          <div className="cue-label">
-            <span className="cue-icon" aria-hidden>
-              {cue.icon}
-            </span>
-            {cue.label}
-          </div>
-          {(block.text ?? cue.detail) && <div className="cue-detail">{block.text ?? cue.detail}</div>}
+          <span className="cue-icon" aria-hidden>
+            {cue.icon}
+          </span>
+          {cue.label}
         </div>
       )
     }
@@ -70,27 +66,10 @@ export function ScriptBlock({ block, isCurrent, ref, onSelect, onOpenRecitation 
           ref={ref as Ref<HTMLElement>}
           aria-label={`Instruction: recite ${r.title} in Arabic`}
         >
-          <div className="cue-label">
-            <span className="cue-icon" aria-hidden>
-              📖
-            </span>
-            Recite Arabic{r.optional && <span className="optional-tag">Optional</span>}
+          <div className="recite-label">
+            <span aria-hidden>📖</span> Arabic{r.optional && <span className="optional-tag">Optional</span>}
           </div>
           <h3 className="recite-title">{r.title}</h3>
-          <p className="recite-subtitle">{r.subtitle}</p>
-          <ol className="recite-steps">
-            <li>
-              <span aria-hidden>📖</span> Open the Arabic page and recite
-            </li>
-            {r.readTranslationAloud && (
-              <li>
-                <span aria-hidden>🇬🇧</span> Read the English translation
-              </li>
-            )}
-            <li>
-              <span aria-hidden>↩️</span> Return to the khutbah
-            </li>
-          </ol>
           <button className="open-recitation" onClick={onOpenRecitation}>
             Open Arabic page →
           </button>

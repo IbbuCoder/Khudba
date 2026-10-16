@@ -1,5 +1,5 @@
 import { ARABIC_SCALE, TEXT_SCALE, type ArabicScript, type Settings, type ThemeSetting } from '../storage'
-import { getIndopakVerse } from '../data/indopak'
+import { getIndopakVerse, TAJWEED_LEGEND } from '../data/indopak'
 import { displayArabic, getVerse } from '../data/quran'
 import { wakeLockSupported } from '../hooks'
 import { Sheet } from './Sheet'
@@ -93,10 +93,22 @@ export function SettingsPanel({ settings, onChange, onRestart, onClose }: Props)
       </div>
 
       {settings.script === 'indopak' && (
-        <label className="setting-row toggle">
-          <span className="setting-label">Tajweed colours</span>
-          <input type="checkbox" checked={settings.tajweed} onChange={(e) => onChange({ tajweed: e.target.checked })} />
-        </label>
+        <>
+          <label className="setting-row toggle">
+            <span className="setting-label">Tajweed colours</span>
+            <input type="checkbox" checked={settings.tajweed} onChange={(e) => onChange({ tajweed: e.target.checked })} />
+          </label>
+          {settings.tajweed && (
+            <div className="tajweed-legend" aria-label="Tajweed colour key">
+              {TAJWEED_LEGEND.map(({ rule, label }) => (
+                <span key={rule} className={`legend-item tj-${rule}`}>
+                  <span className="legend-dot" aria-hidden />
+                  {label}
+                </span>
+              ))}
+            </div>
+          )}
+        </>
       )}
 
       <Stepper label="Arabic text" value={settings.arabicScale} range={ARABIC_SCALE} onChange={(v) => onChange({ arabicScale: v })} />
