@@ -76,3 +76,21 @@ export function loadPosition(): Position | null {
 }
 
 export const savePosition = (p: Position) => write(POSITION_KEY, p)
+
+/** Khutbah stopwatch: elapsed time is `elapsedMs` plus time since `runningSince`. */
+export interface TimerState {
+  elapsedMs: number
+  runningSince: number | null
+}
+
+const TIMER_KEY = 'khutbah-reader:timer'
+
+export function loadTimer(): TimerState {
+  const t = read<TimerState>(TIMER_KEY)
+  return {
+    elapsedMs: typeof t?.elapsedMs === 'number' ? t.elapsedMs : 0,
+    runningSince: typeof t?.runningSince === 'number' ? t.runningSince : null,
+  }
+}
+
+export const saveTimer = (t: TimerState) => write(TIMER_KEY, t)

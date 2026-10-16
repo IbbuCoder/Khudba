@@ -42,13 +42,11 @@ export const SECTIONS: SectionInput[] = [
     part: 'First Khutbah',
     blocks: [
       say('My brothers and sisters,'),
-      say('Have you ever had something happen to you and thought, “Why is this happening to me?”'),
+      say('Have you ever been through something and asked, “Why is this happening to me?”'),
       say(
-        'Maybe you lost something important. Maybe something you really wanted didn’t happen. Or maybe you went through a hard time and couldn’t understand why Allah let it happen.',
+        'Maybe you lost something important. Maybe something you really wanted didn’t happen. Or maybe you went through a hard time and couldn’t understand why Allah allowed it.',
       ),
-      say(
-        'The truth is, we won’t always understand what happens to us. But the Qur’an teaches us something very important: tests are part of life.',
-      ),
+      say('We won’t always understand what happens to us. But the Qur’an tells us something important: tests are part of life.'),
     ],
   },
   {
@@ -63,10 +61,10 @@ export const SECTIONS: SectionInput[] = [
     part: 'First Khutbah',
     blocks: [
       say(
-        'In these verses, Allah tells us that we will be tested with fear, hunger, and loss. But look at what comes after the test: Allah praises those who are patient, and He gives them blessings and mercy.',
+        'Allah tells us we will be tested with fear, hunger, and loss. But look at what follows: He praises those who are patient and promises them blessings and mercy.',
       ),
       say(
-        'So when something hard happens, it doesn’t mean Allah is punishing you. Sometimes it’s a test. Sometimes it’s a chance to grow in patience. Sometimes it brings us closer to Allah. And sometimes we just don’t know the reason yet.',
+        'So a hardship is not a sign that Allah is punishing you. It may be a test. It may be a chance to grow in patience, or a way back to Allah. And sometimes we simply don’t know the reason yet.',
       ),
       PAUSE,
     ],
@@ -76,24 +74,19 @@ export const SECTIONS: SectionInput[] = [
     title: 'The story of Prophet Yusuf',
     part: 'First Khutbah',
     blocks: [
-      say('Think about the story of Prophet Yusuf, peace be upon him, which Allah tells us in the Qur’an.'),
+      say('Think of Prophet Yusuf, peace be upon him.'),
       say(
-        'When Yusuf was young, his own brothers became jealous of him. They threw him into a well, and he was taken away from his family. He was brought to Egypt, where he faced more hardship. Then he was put in prison, even though he was innocent.',
+        'When he was young, his own brothers grew jealous of him and threw him into a well. He was taken to Egypt, far from his family, and faced more hardship there. Later he was put in prison, even though he was innocent.',
       ),
+      say('Imagine living through all of that.'),
       say(
-        'Imagine going through all of that: losing your family, struggling in a strange land, and being punished for something you didn’t do.',
+        'But his story didn’t end there. By Allah’s will, Yusuf became a man of authority in Egypt, and years later he was reunited with his family.',
       ),
-      say('But his story didn’t end there.'),
-      say('By Allah’s will, Yusuf later became a man of authority in Egypt. Years later, he was reunited with his family.'),
+      say('In the well, and in the prison, Yusuf couldn’t see how his story would end. But Allah could.'),
       say(
-        'While Yusuf was in the well, and while he was in prison, he couldn’t see how his story would end. But Allah knew the whole story.',
+        'The lesson is not that every hardship ends in wealth or power. The lesson is that one hard chapter is not the whole story.',
       ),
-      say(
-        'The lesson is not that every hardship ends with wealth or power. The lesson is that we can’t see the whole picture while we’re going through a hard moment.',
-      ),
-      say(
-        'So when you face a difficulty, don’t think that this moment is the end of your story. Stay patient, keep doing what is right, and keep trusting Allah.',
-      ),
+      say('So when you face a difficulty, don’t treat it as the end. Stay patient, keep doing what is right, and hold on to Allah.'),
       PAUSE,
     ],
   },
@@ -104,18 +97,16 @@ export const SECTIONS: SectionInput[] = [
     blocks: [
       say('Let me share something that happened to my own family.'),
       say(
-        'Some time ago, an elderly lady accidentally crashed into our family car, and the car was completely totaled. My family and I were sad and frustrated. It felt like a setback we didn’t expect, and we couldn’t understand why it had happened to us.',
+        'Some time ago, an elderly lady accidentally crashed into our car, and it was completely totaled. We were upset and frustrated. It felt like a setback out of nowhere, and we couldn’t understand why it had happened to us.',
       ),
       say(
-        'But the insurance company took care of everything. They gave us enough money to buy the brand-new version of our old car — the exact upgraded model we had been hoping to get, even before the crash.',
+        'But the insurance company covered everything, and the payout was enough to buy the brand-new version of our old car — the exact upgraded model we had been hoping for, even before the crash.',
       ),
+      say('On the day of the crash, all we could see was loss, damage, and stress. In the end, things turned out very differently than we expected.'),
       say(
-        'When the crash happened, all we could see was loss, damage, and stress. We couldn’t see anything good in it. But in the end, things turned out differently than we expected.',
+        'I’m not saying every loss turns into something better in this life, or that we will always find out the reason. But it taught us that the first moment of a hardship rarely shows the full picture.',
       ),
-      say(
-        'Now, I’m not saying that every bad thing will turn into something better in this life, or that we will always know why something happened. But this taught us that we don’t see the full picture when something first goes wrong.',
-      ),
-      say('Sometimes we understand later. Sometimes we never find out the full reason. Either way, we can keep trusting Allah.'),
+      say('Sometimes the wisdom becomes clear later. Sometimes it never does. Either way, our trust in Allah doesn’t have to change.'),
       PAUSE,
     ],
   },
@@ -123,23 +114,21 @@ export const SECTIONS: SectionInput[] = [
     id: 'talaq',
     title: 'Qur’an: At-Talaq 65:2–3',
     part: 'First Khutbah',
-    blocks: [say('Being tested doesn’t mean Allah has left us. Allah says in the Qur’an:'), { type: 'recite', recitationId: 'talaq' }],
+    blocks: [say('And being tested never means being abandoned. Allah says:'), { type: 'recite', recitationId: 'talaq' }],
   },
   {
     id: 'way-out',
     title: 'Allah makes a way out',
     part: 'First Khutbah',
     blocks: [
+      say('Think about that. You may look at your situation and say, “I don’t see a way out.” But Allah sees what you cannot.'),
+      say('You may say, “I don’t know what to do.” But He knows.'),
       say(
-        'Allah promises that whoever is mindful of Him, He will make a way out for them, and He will provide for them from where they do not expect.',
+        'The Prophet Muhammad, peace and blessings be upon him, said that the affair of the believer is amazing, because all of it is good. If something good happens, he is grateful, and that is good for him. If something hard happens, he is patient, and that is also good for him.',
       ),
-      say('Think about that. You may look at your situation and say, “I don’t see a way out.” But Allah sees what you cannot see.'),
-      say('You may say, “I don’t know what to do.” But Allah knows.'),
       say(
-        'The Prophet Muhammad, peace and blessings be upon him, taught us that a believer can find good in every situation. When something good happens, the believer is grateful, and that is good for him. When something hard happens, the believer is patient, and that is also good for him.',
+        'So in ease, we give thanks. In hardship, we stay patient and turn to Allah. Hardship is never easy, but the way we respond to it can earn us reward.',
       ),
-      say('So in good times, we show gratitude. In hard times, we stay patient and keep turning to Allah.'),
-      say('This doesn’t mean hardship is easy. It means the way we respond to hardship can earn us reward.'),
       PAUSE,
     ],
   },
@@ -149,7 +138,7 @@ export const SECTIONS: SectionInput[] = [
     part: 'First Khutbah',
     blocks: [
       say(
-        'We don’t need to understand why something is happening in order to trust Allah. We only need to remember who Allah is. He knows what we don’t know. He sees what we can’t see. And He knows the beginning, the middle, and the end of our story.',
+        'We don’t need to understand everything that happens in order to trust Allah. We only need to remember who He is. He knows what we don’t know. He sees what we can’t see. And He knows the beginning, the middle, and the end of our story.',
       ),
       PAUSE,
       { type: 'cue', cue: 'sit' },
@@ -167,17 +156,14 @@ export const SECTIONS: SectionInput[] = [
   },
   {
     id: 'lessons',
-    title: 'Three lessons from today',
+    title: 'Three lessons to take home',
     part: 'Second Khutbah',
     blocks: [
-      say('My brothers and sisters,'),
-      say('Let us remember three lessons from today.'),
-      say('First: life will have tests. We will face hardships, sudden losses, and things we don’t understand at first.'),
+      say('My brothers and sisters, let us take three lessons home with us today.'),
+      say('First: tests are part of life. Losses and difficulties will come, often without warning.'),
+      say('Second: hardship does not mean Allah has left us. He has promised a way out to those who are mindful of Him.'),
       say(
-        'Second: a hard situation doesn’t mean Allah has left us. Allah promises that whoever is mindful of Him, He will make a way out for them and provide for them from where they do not expect.',
-      ),
-      say(
-        'Third: true sabr, or patience, is not giving up or feeling helpless. Real sabr is keeping your heart connected to Allah while you keep working, keep making du‘a, and keep doing what is right.',
+        'Third: true sabr is not giving up or feeling helpless. It is keeping your heart attached to Allah while you keep working, keep making du‘a, and keep doing what is right.',
       ),
     ],
   },
@@ -186,12 +172,8 @@ export const SECTIONS: SectionInput[] = [
     title: '“Allah knows what I don’t know”',
     part: 'Second Khutbah',
     blocks: [
-      say(
-        'The story of Prophet Yusuf teaches us not to judge the whole story by one hard chapter. And our own lives remind us that things don’t always go the way we expect.',
-      ),
-      say('So the next time something doesn’t go according to your plan, don’t rush to say, “Why me?”'),
-      say('Instead, remember: “Allah knows what I don’t know.”'),
-      say('Keep making du‘a. Keep doing what is right. Be patient through the test. And trust Allah, even when you can’t see the way forward.'),
+      say('So the next time life doesn’t go according to plan, before you ask, “Why me?”, remind yourself: “Allah knows what I don’t know.”'),
+      say('Be patient through the test, and trust Him even when you can’t see the way forward.'),
       PAUSE,
     ],
   },

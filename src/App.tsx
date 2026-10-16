@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { BLOCKS, KHUTBAH_TITLE, SECTIONS, SECTION_START, type Block } from './data/script'
 import { RECITATIONS } from './data/recitations'
-import { loadPosition, loadSettings, savePosition, saveSettings, type Settings } from './storage'
+import { loadPosition, loadSettings, loadTimer, savePosition, saveSettings, saveTimer, type Settings, type TimerState } from './storage'
+import { formatClock, formatMinutes, secondsLeftFrom, TARGET_MINUTES } from './data/timing'
 import { useEffectiveTheme, useWakeLock } from './hooks'
 import { ScriptBlock } from './components/ScriptBlock'
 import { TocPanel } from './components/TocPanel'
@@ -32,6 +33,8 @@ export default function App() {
   const [panel, setPanel] = useState<Panel>(null)
   const [presentation, setPresentation] = useState(false)
   const [restoredNotice, setRestoredNotice] = useState(initialIndex > 0)
+  const [timer, setTimer] = useState<TimerState>(loadTimer)
+  const [, setTick] = useState(0)
 
   const blockRefs = useRef<(HTMLElement | null)[]>([])
   const topBarRef = useRef<HTMLElement>(null)
@@ -46,6 +49,29 @@ export default function App() {
   useWakeLock(settings.keepAwake)
 
   useEffect(() => saveSettings(settings), [settings])
+  useEffect(() => saveTimer(timer), [timer])
+
+  // Re-render once a second while the timer runs.
+  useEffect(() => {
+    if (timer.runningSince === null) return
+    const id = window.setInterval(() => setTick((t) => t + 1), 1000)
+    return () => window.clearInterval(id)
+  }, [timer.runningSince])
+
+  const startTimer = useCallback(
+    () => setTimer((t) => (t.runningSince === null ? { ...t, runningSince: Date.now() } : t)),
+    [],
+  )
+  const toggleTimer = useCallback(
+    () =>
+      setTimer((t) =>
+        t.runningSince === null
+          ? { ...t, runningSince: Date.now() }
+          : { elapsedMs: t.elapsedMs + Date.now() - t.runningSince, runningSince: null },
+      ),
+    [],
+  )
+  const resetTimer = useCallback(() => setTimer({ elapsedMs: 0, runningSince: null }), [])
 
   useEffect(() => {
     savePosition({ blockId: BLOCKS[current].id })
@@ -120,6 +146,8 @@ export default function App() {
 
   const goNext = useCallback(() => {
     setRestoredNotice(false)
+    // The timer starts with the first press of Next (it is never started by scrolling).
+    if (timer.runningSince === null && timer.elapsedMs === 0) startTimer()
     // A long block (e.g. an Arabic passage) that runs past the bottom of the
     // screen is paged through first, so nothing gets skipped.
     const el = blockRefs.current[current]
@@ -130,7 +158,7 @@ export default function App() {
       return
     }
     if (current < BLOCKS.length - 1) scrollToBlock(current + 1, true)
-  }, [current, scrollToBlock, topOffset])
+  }, [current, scrollToBlock, topOffset, timer, startTimer])
 
   const goPrev = useCallback(() => {
     setRestoredNotice(false)
@@ -199,6 +227,10 @@ export default function App() {
   const block: Block = BLOCKS[current]
   const section = SECTIONS[block.sectionIndex]
   const progress = BLOCKS.length > 1 ? current / (BLOCKS.length - 1) : 1
+  const elapsedSec = (timer.elapsedMs + (timer.runningSince !== null ? Date.now() - timer.runningSince : 0)) / 1000
+  const timerStarted = timer.runningSince !== null || timer.elapsedMs > 0
+  const overTime = elapsedSec > TARGET_MINUTES * 60
+  const leftSec = secondsLeftFrom(current)
   const atEnd = current >= BLOCKS.length - 1
 
   return (
@@ -272,10 +304,16 @@ export default function App() {
               ✕
             </button>
           )}
-          <div className="bottom-status">
-            <span className="bottom-section">{presentation ? section.title : `Section ${block.sectionIndex + 1} of ${SECTIONS.length}`}</span>
-            <span className="bottom-percent">{Math.round(progress * 100)}%</span>
-          </div>
+          <button
+            className={`bottom-status${overTime ? ' over-time' : ''}`}
+            onClick={toggleTimer}
+            aria-label={timer.runningSince !== null ? 'Pause timer' : 'Start timer'}
+          >
+            <span className="bottom-timer">
+              {!timerStarted ? '⏱ Timer' : `${timer.runningSince === null ? '⏸' : '⏱'} ${formatClock(elapsedSec)}`}
+            </span>
+            <span className="bottom-left">{leftSec > 0 ? `~${formatMinutes(leftSec)} left` : 'Done'}</span>
+          </button>
           <button className="nav-btn primary" onClick={goNext} disabled={atEnd}>
             Next ›
           </button>
@@ -283,7 +321,13 @@ export default function App() {
 
         {panel === 'toc' && <TocPanel currentSection={block.sectionIndex} onJump={jumpToSection} onClose={() => setPanel(null)} />}
         {panel === 'settings' && (
-          <SettingsPanel settings={settings} onChange={updateSettings} onRestart={restart} onClose={() => setPanel(null)} />
+          <SettingsPanel
+            settings={settings}
+            onChange={updateSettings}
+            onRestart={restart}
+            onResetTimer={resetTimer}
+            onClose={() => setPanel(null)}
+          />
         )}
       </div>
     </>

@@ -9,7 +9,10 @@ A private reading script for delivering the Friday khutbah **“Everything Has a
 - **📖 Recite in Arabic** blocks show the Arabic on a mushaf-style page (Indo-Pak script with tajweed colours), with the transliteration underneath. For Qur’an passages a **🇬🇧 Read the English** block follows.
 - **Boxed cues are never spoken:** ⏸️ Pause, 🪑 Sit briefly, 🧍 Stand up, 🤲 Make du‘a, 🏁 End of khutbah.
 - **Next / Previous** move one block at a time. If a block is taller than the screen, Next scrolls through it first, so nothing is skipped. Arrow keys, Space and Bluetooth page turners work too.
-- **☰ Contents** jumps to any section. **Aa** sets text sizes, light or dark mode, Arabic style (Indo-Pak or Uthmani), tajweed colours and keep-screen-awake. **⛶ Present** hides the menus.
+- **⏱ Timer** in the bottom bar starts when you first press Next and shows the time left (estimated). Tap it to pause or resume. It turns orange after 10 minutes, keeps running if the page reloads, and resets from **Aa → Timer**.
+- **☰ Contents** jumps to any section and shows roughly how long each one takes.
+- **Paper backup:** **Aa → Print / save PDF** prints the whole script (Arabic included) without the buttons, in case your phone dies.
+- **Aa** sets text sizes, light or dark mode, Arabic style (Indo-Pak or Uthmani), tajweed colours and keep-screen-awake. **⛶ Present** hides the menus.
 - Your place and settings are **saved on the device**. After the first visit the script **works offline**. On iPhone, use *Share → Add to Home Screen*.
 
 ## Sources and accuracy

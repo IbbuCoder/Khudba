@@ -4,6 +4,7 @@ import { displayArabic } from './quran'
 import { getIndopakVerse, joinRuns, runsText } from './indopak'
 import { RECITATIONS } from './recitations'
 import { BLOCKS, SECTIONS, SECTION_START } from './script'
+import { TOTAL_SECONDS } from './timing'
 
 const verses = verified.verses as Record<string, { arabic: string; translation: string }>
 
@@ -147,5 +148,13 @@ describe('Indo-Pak script', () => {
         expect(letters(runsText(s.indopak!)), s.ref).toBe(letters(s.arabic))
       }
     }
+  })
+})
+
+describe('Timing', () => {
+  it('keeps the whole khutbah close to the 10-minute target', () => {
+    const minutes = TOTAL_SECONDS / 60
+    expect(minutes).toBeGreaterThan(9)
+    expect(minutes).toBeLessThan(11)
   })
 })

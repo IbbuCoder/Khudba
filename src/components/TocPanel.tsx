@@ -1,5 +1,6 @@
 import { SECTIONS } from '../data/script'
 import { Sheet } from './Sheet'
+import { formatMinutes, SECTION_SECONDS, TOTAL_SECONDS } from '../data/timing'
 
 interface Props {
   currentSection: number
@@ -11,6 +12,7 @@ export function TocPanel({ currentSection, onJump, onClose }: Props) {
   let lastPart = ''
   return (
     <Sheet title="Contents" onClose={onClose} side="left">
+      <p className="toc-total">About {Math.round(TOTAL_SECONDS / 60)} minutes in total</p>
       <ol className="toc">
         {SECTIONS.map((s, i) => {
           const showPart = s.part !== lastPart
@@ -26,6 +28,7 @@ export function TocPanel({ currentSection, onJump, onClose }: Props) {
               >
                 <span className="toc-num">{i + 1}</span>
                 <span className="toc-title">{s.title}</span>
+                {SECTION_SECONDS[i] > 0 && <span className="toc-time">{formatMinutes(SECTION_SECONDS[i])}</span>}
                 {hasArabic && (
                   <span className="toc-badge" aria-label="Arabic recitation">
                     📖

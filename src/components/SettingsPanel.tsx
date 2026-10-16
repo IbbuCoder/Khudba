@@ -8,6 +8,7 @@ interface Props {
   settings: Settings
   onChange: (patch: Partial<Settings>) => void
   onRestart: () => void
+  onResetTimer: () => void
   onClose: () => void
 }
 
@@ -52,7 +53,7 @@ function Stepper({
   )
 }
 
-export function SettingsPanel({ settings, onChange, onRestart, onClose }: Props) {
+export function SettingsPanel({ settings, onChange, onRestart, onResetTimer, onClose }: Props) {
   return (
     <Sheet title="Display" onClose={onClose}>
       <div className="setting-row">
@@ -130,8 +131,28 @@ export function SettingsPanel({ settings, onChange, onRestart, onClose }: Props)
         </button>
       </div>
 
+      <div className="setting-row">
+        <span className="setting-label">Timer</span>
+        <button className="plain-btn" onClick={onResetTimer}>
+          Reset to 0:00
+        </button>
+      </div>
+
+      <div className="setting-row">
+        <span className="setting-label">Paper backup</span>
+        <button
+          className="plain-btn"
+          onClick={() => {
+            onClose()
+            window.setTimeout(() => window.print(), 100)
+          }}
+        >
+          Print / save PDF
+        </button>
+      </div>
+
       <p className="setting-note">
-        Your place and display settings are saved on this device only. After the first visit, the script works offline.
+        The timer starts when you first press Next; tap it in the bottom bar to pause. Your place, timer and settings are saved on this device only, and the script works offline after the first visit.
       </p>
     </Sheet>
   )
